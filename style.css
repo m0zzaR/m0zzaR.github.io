@@ -194,6 +194,8 @@ pre code {
 
     section img {
         float: right; /* Disable float on smaller screens */
+        position: relative;
+        display: block;
         margin-left: 0;
         margin-bottom: 20px;
     }
