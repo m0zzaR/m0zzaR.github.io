@@ -48,12 +48,36 @@ img {
 }
 
 @media (max-width: 768px) {
+    main {
+        padding: 20px; /* Reduce padding to fit smaller screens */
+    }
+
+    pre code {
+        white-space: pre-wrap; /* Wrap code blocks on mobile */
+        word-wrap: break-word;
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+    }
+
+    .blog-post {
+        width: 100%; /* Ensure full width on small screens */
+        margin: 0 auto;
+    }
+
     img {
         float: none; /* Disable float on smaller screens */
         display: block;
         margin: 20px auto;
         width: 150px;
     }
+}
+
+pre code {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    overflow-x: auto;
+    white-space: pre-wrap; /* Word wrapping for code */
 }
 
 /* Navigation bar styles */
@@ -98,6 +122,7 @@ nav ul li a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    width: 100%;
 }
 
 .blog-post h2 {
