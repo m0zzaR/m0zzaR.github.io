@@ -101,8 +101,7 @@ p {
     margin-bottom: 20px;
 }
 
-/* Coursework and Projects Links */
-.coursework a,
+/* Projects Links */
 .projects a {
     font-size: 1.2rem;
     font-weight: bold;
@@ -112,12 +111,42 @@ p {
     margin-bottom: 5px;
 }
 
-.coursework p,
+.projects a:hover {
+    color: darkblue;
+}
+
 .projects p {
     font-size: 1rem;
     color: grey;
     margin-bottom: 20px;
 }
+
+/* Coursework Links */
+.course-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.course-link:hover {
+    color: darkblue
+}
+
+/* Professor Links (Different Style) */
+.prof-link {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #333; /* Different color */
+    text-decoration: underline; /* Keep underline for professor links */
+}
+
+.prof-link:hover {
+    color: blue; /* Change color on hover */
+}
+
 
 /* Blog Grid Styles */
 .blog-grid {
