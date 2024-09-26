@@ -20,6 +20,7 @@ main {
     width: 90%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+
 }
 
 /* Navigation Bar Styles */
@@ -65,10 +66,11 @@ section img {
     border-radius: 6px;
     margin-left: 20px;
     margin-bottom: 20px;
-    width: 150px;
+    width: 200px;
     height: auto;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 section div {
@@ -193,11 +195,14 @@ pre code {
     }
 
     section img {
-        float: right; /* Disable float on smaller screens */
-        position: relative;
-        display: block;
-        margin-left: 0;
+        float: right; /* Float image to the right */
+        border-radius: 6px;
+        margin-left: 20px;
         margin-bottom: 20px;
+        width: 150px;
+        height: auto;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     nav ul {
