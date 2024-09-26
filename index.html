@@ -6,68 +6,19 @@
     <meta name="description" content="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- CSS for styling -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica', sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        main {
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        section {
-            position: relative;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        img {
-            float: right; /* Floats the image to the right */
-            border-radius: 6px;
-            margin-left: 20px;
-            margin-bottom: 10px;
-            width: 150px;
-            height: auto;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            img {
-                float: none; /* Disable float on smaller screens */
-                display: block;
-                margin: 20px auto;
-                width: 150px;
-            }
-        }
-    </style>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <main>
+    <!-- Navigation bar inside the main content box -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Engineering Blog</a></li>
+        </ul>
+    </nav>
     <section>
         <img src="./docs/photo.png" alt="Gabriel Fonseca"> <!-- The image is floated to the right -->
 
@@ -128,8 +79,6 @@
             <p style="font-size: small; color: grey; margin-bottom: 10px;">
                 Meta LLaMa based chat bot fine tuned on r/berkeley data. Designed during CalHacks 2023.
             </p>
-
-
         </div>
     </section>
 </main>

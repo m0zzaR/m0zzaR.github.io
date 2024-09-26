@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Celestial Body Simulation</title>
+    <meta name="description" content="Celestial Body Simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Celestial Body Simulation</title>
+    <meta name="description" content="Celestial Body Simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main>
+        <!-- Navigation bar inside the main content box -->
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../blog.html">Engineering Blog</a></li>
+            </ul>
+        </nav>
+        <section>
+            <div>
+                <h1>Building a Celestial Body Simulation Program</h1>
+    
+                <p>
+                    In this post, I’ll walk you through the process of building a simple celestial body simulation. 
+                    This project focuses on simulating gravitational interactions between two bodies, such as Earth 
+                    and the Moon, using physics principles like Newton's Law of Universal Gravitation.
+                </p>
+    
+                <h2>1. Defining the Problem</h2>
+                <p>
+                    The goal of this project was to create a simulation that models the gravitational forces between two celestial bodies and tracks their motion over time. 
+                    I wanted the simulation to visually represent the positions of these bodies while taking into account realistic physics.
+                </p>
+    
+                <h2>2. Designing the Classes and Methods</h2>
+                <p>
+                    The key part of the design is the <code>CelestialBody</code> class. Each celestial body has a mass, position, and velocity. These are initialized in the constructor, and the class includes methods for updating the body's position and velocity:
+                </p>
+                <pre><code>
+    class CelestialBody:
+        def __init__(self, mass, position, velocity):
+            self.mass = mass
+            self.position = np.array(position, dtype=float)
+            self.velocity = np.array(velocity, dtype=float)
+        
+        def update_position(self, dt, acceleration):
+            self.position += self.velocity * dt + 0.5 * acceleration * dt ** 2
+    
+        def update_velocity(self, dt, acceleration_new, acceleration_old):
+            self.velocity += 0.5 * (acceleration_old + acceleration_new) * dt
+                </code></pre>
+    
+                <p>
+                    The <code>update_position</code> method applies Verlet integration to update the position based on velocity and acceleration, 
+                    while the <code>update_velocity</code> method updates the velocity using the average of old and new accelerations.
+                </p>
+    
+                <h2>3. Gravitational Force Calculation</h2>
+                <p>
+                    The next crucial part of the simulation was computing the gravitational force between two bodies. This was done using Newton's law of gravitation:
+                </p>
+                <pre><code>
+    def compute_gravitational_force(body1, body2, G):
+        r_vec = body2.position - body1.position
+        r_mag = np.linalg.norm(r_vec) + 1e-10  # Prevent division by zero
+        F_mag = G * body1.mass * body2.mass / r_mag ** 2
+        F_vec = F_mag * (r_vec / r_mag)
+        return F_vec
+                </code></pre>
+    
+                <p>
+                    The gravitational force is inversely proportional to the square of the distance between the two bodies. By using vector math, 
+                    we can determine the direction and magnitude of the force acting on each body.
+                </p>
+    
+                <h2>4. Integrating the Motion</h2>
+                <p>
+                    Once the forces are calculated, I used them to update the positions and velocities of the celestial bodies step by step. 
+                    The <code>step</code> function performs these calculations and updates for each time step:
+                </p>
+                <pre><code>
+    def step(dt, body1, body2, G):
+        F12 = compute_gravitational_force(body1, body2, G)
+        a1_old = F12 / body1.mass
+        a2_old = -F12 / body2.mass
+    
+        body1.update_position(dt, a1_old)
+        body2.update_position(dt, a2_old)
+    
+        F12_new = compute_gravitational_force(body1, body2, G)
+        a1_new = F12_new / body1.mass
+        a2_new = -F12_new / body2.mass
+    
+        body1.update_velocity(dt, a1_new, a1_old)
+        body2.update_velocity(dt, a2_new, a2_old)
+                </code></pre>
+    
+                <p>
+                    This approach models the interactions step-by-step in a loop, allowing us to animate the motion of the bodies.
+                </p>
+    
+                <h2>5. Animating the Simulation</h2>
+                <p>
+                    To visualize the motion, I used <code>matplotlib.animation</code> to create an animation. 
+                    The positions of the celestial bodies are updated over time, and trails are drawn to show their paths:
+                </p>
+                <pre><code>
+    anim = FuncAnimation(fig, animate, init_func=init, interval=20, blit=True)
+    plt.show()
+                </code></pre>
+                <p>
+                    The result is a dynamic animation showing the gravitational dance between the two bodies. The animation also 
+                    includes trails to track the movement of the Moon relative to Earth.
+                </p>
+    
+                <h2>Conclusion</h2>
+                <p>
+                    This project was a great exercise in understanding gravitational dynamics and implementing numerical integration 
+                    techniques. Moving forward, I plan to extend this simulation to include more bodies and perhaps improve performance 
+                    for more complex scenarios.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+
+</body>
+</html>
+
+</body>
+</html>
