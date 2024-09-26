@@ -193,7 +193,7 @@ pre code {
     }
 
     section img {
-        float: none; /* Disable float on smaller screens */
+        float: right; /* Disable float on smaller screens */
         margin-left: 0;
         margin-bottom: 20px;
     }
