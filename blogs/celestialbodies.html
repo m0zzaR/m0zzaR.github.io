@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 <main>
@@ -15,22 +16,91 @@
         <ul>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../blog.html">Engineering Blog</a></li>
+            <li><a href="./docs/resume.pdf" target="_blank">Resume</a></li>
         </ul>
     </nav>
     <section>
         <div>
-            <h1>Building a Celestial Body Simulation Program</h1>
+            <h1>Building an Interactive Celestial Body Simulation (Part 1)</h1>
             <p>
-                In this post, I’ll walk you through the process of building a simple celestial body simulation.
-                This project focuses on simulating gravitational interactions between two bodies, such as Earth
-                and the Moon, using physics principles like Newton's Law of Universal Gravitation.
+                I recently developed a program that simulates the attractive force of two objects in space time using
+                Newtonian Mechanics. In this post, I will walk you through my proccess of building this program.
+            </p>
+            <h2>0. Preface</h2>
+            <p>
+                 My original (and current) idea for this project was/is to create a video game like simuation software 
+                 for users to see how any number of bodies in space would interact with eachother. The current iteration
+                 is not quite there yet, I still have to refine some bugs, and develop an interative platform that 
+                 makes it easy for even a young child to play with.
             </p>
             <h2>1. Defining the Problem</h2>
             <p>
-                The goal of this project was to create a simulation that models the gravitational forces between
-                two celestial bodies and tracks their motion over time. I wanted the simulation to visually
-                represent the positions of these bodies while taking into account realistic physics.
+                The goal of this project is to create a simulation that models the gravitational forces between
+                two celestial bodies and tracks their motion over time. I knew it would be more of a challenge
+                for me to code the project than it would be to define the mathematics, so I brushed up on some
+                Python libraries that I planned to use, like matplotlib.
+
             </p>
+                <p>
+                    First, let's start with what I know best, the mechanics:
+                    I am using Newtonian Mechanics for this problem even though they are known to not work for
+                    very large masses, like black holes. But since I don't know General Relativity, this is the 
+                    best it's gonna get (for now).
+                </p>
+                <p>
+                    The majority of the heavy lifting is done by the Inverse Square Law:
+                </p>
+                <p>
+                    \[ \vec{\mathbf{F}} = G \frac{m_1 m_2}{\vec{\mathbf{R}}^2} \]
+                </p>
+
+                <p style="text-align: center;">
+                    where
+                </p>
+                
+                <p>
+                     \[ \vec{\mathbf{R}} = x\vec{\mathbf{i}} + y\vec{\mathbf{j}} \] 
+                </p>
+                
+                <p>
+                    Next we define some basic kinematic equations, which are updated with small time steps given
+                    by the Inverse Square Law defined above. I used:
+                </p>
+                
+                <p>
+                    \[ \vec{\mathbf{v}}(t) = \vec{\mathbf{a}}t \]
+                </p>
+                
+                <p style="text-align: center;">
+                    and
+                </p>
+                
+                <p>
+                    \[ \vec{\mathbf{r}}(t) = \vec{\mathbf{v}}t + \frac{1}{2} \vec{\mathbf{a}}t^2 \]
+                </p>
+                <p>
+                    For sake of completeness, I will also define how I computed the x and y components of the force vector:
+                </p>
+                
+                <p>
+                    \[ F_x = \vec{\mathbf{F}} \frac{x_2 - x_1}{|\vec{\mathbf{R}}|} \]
+                </p>
+                
+                <p style="text-align: center;">
+                    and
+                </p>
+                
+                <p>
+                    \[ F_y = \vec{\mathbf{F}} \frac{y_2 - y_1}{|\vec{\mathbf{R}}|} \]
+                </p>
+                
+                <p>
+                    Where \( x_2 \) and \( y_2 \) correspond to the position of the second body, and \( x_1 \) and \( y_1 \) to the first body.
+                </p>
+                <p>
+                    Now lets move onto the code...
+                </p>
+    
             <h2>2. Designing the Classes and Methods</h2>
             <p>
                 The key part of the design is the <code>CelestialBody</code> class. Each celestial body has a
@@ -51,14 +121,13 @@ class CelestialBody:
         self.velocity += 0.5 * (acceleration_old + acceleration_new) * dt
             </code></pre>
             <p>
-                The <code>update_position</code> method applies Verlet integration to update the position based
+                The <code>update_position</code> method, as its name suggests, updates the position based
                 on velocity and acceleration, while the <code>update_velocity</code> method updates the velocity
                 using the average of old and new accelerations.
             </p>
             <h2>3. Gravitational Force Calculation</h2>
             <p>
                 The next crucial part of the simulation was computing the gravitational force between two bodies.
-                This was done using Newton's law of gravitation:
             </p>
             <pre><code class="language-python">
 def compute_gravitational_force(body1, body2, G):
@@ -69,13 +138,11 @@ def compute_gravitational_force(body1, body2, G):
     return F_vec
             </code></pre>
             <p>
-                The gravitational force is inversely proportional to the square of the distance between the two
-                bodies. By using vector math, we can determine the direction and magnitude of the force acting
-                on each body.
+                This uses the Inverse Square Law which we defined earlier.
             </p>
             <h2>4. Integrating the Motion</h2>
             <p>
-                Once the forces are calculated, I used them to update the positions and velocities of the celestial
+                Once the forces are calculated, I used the Verlet integration method to update the positions and velocities of the celestial
                 bodies step by step. The <code>step</code> function performs these calculations and updates for
                 each time step:
             </p>
@@ -112,12 +179,15 @@ plt.show()
                 The result is a dynamic animation showing the gravitational dance between the two bodies. The
                 animation also includes trails to track the movement of the Moon relative to Earth.
             </p>
-            <h2>Conclusion</h2>
+            <h2>In The End...</h2>
             <p>
                 This project was a great exercise in understanding gravitational dynamics and implementing numerical
-                integration techniques. Moving forward, I plan to extend this simulation to include more bodies and
-                perhaps improve performance for more complex scenarios.
+                integration techniques, but it is far from done. I still need to implement support for multiple bodies
+                as well as an interactive front end for ease of use. Plan to see more blog posts about this project in the
+                future. To see the full project, you can visit the 
+                <a href="https://github.com/m0zzaR/ThreeBodyProblem" target="_blank">repository on my GitHub</a>.
             </p>
+            
         </div>
     </section>
 </main>
