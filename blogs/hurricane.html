@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hurricane Simulation</title>
+    <meta name="description" content="Celestial Body Simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<main>
+    <!-- Navigation bar inside the main content box -->
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../blog.html">Engineering Blog</a></li>
+            <li><a href="./docs/resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div>
+            <h1>Modeling a Hurricane, Defining Sudo-Forces and Understanding the Corriolis Effect</h1>
+
+            <h2>0. Preface</h2>
+
+            <p>
+                Hurricanes are a very interesting force of nature that arise party because of something you might not ever expect, the rotation of the Earth.
+                That's right, hurricanes wouldn't form if it weren't for the spin of the Earth, well neither would you for that matter... but this is besides the
+                point.
+            </p>
+
+            <p>
+                By the end of this blog I hope that both you and I will have a deeper, more mathematical understanding of hurricanes and how they behave. Naturally
+                following from that we will also better understand of mysterious sudo-forces, like the Corriolis effect.
+            </p>
+
+            <h2>1. Defining the Problem</h2>
+
+            <p>
+                A hurricane forms when a low-pressure zone develops at a point
+                on the earth, which then attracts the air to it. But due to the earth’s rotation, the
+                pseudoforces that influence the air particles as they attract to the low-pressure zone cause
+                the air to swirl.
+
+                
+            </p>
+
+            <p>
+                We will make this problem more tractable by assuming the earth is a flat disk (no
+                conspiracy theories please!) spinning at some arbritray rate.
+            </p>
+
+            <p>
+                Let us assume the low-pressure center has a
+                position vector  that is fixed to a particular location on the earth \( \mathbf{r}_0(t) \) away from the
+                “North pole,” which is the center of the disk. Suppose the low-pressure zone establishes a
+                vector field that we can imagine pulls on parcels of air with a force \[ \mathbf{F}_p(\mathbf{r}, t) = -F_0(\mathbf{r} - \mathbf{r}_0(t))  \] 
+            </p>
+
+            <p style="text-align: center;">
+                where \(F_0\) = [N/m]
+
+            </p>
+
+            <p>
+                Let's imagine a single particle of air which is initially moving with the earth. These air particles also
+                experience a drag force when they move relative to the earth’s surface:
+                \[ \mathbf{F}_d = -c_s(\mathbf{v} - \mathbf{v}_e(t))  \] 
+            </p>
+
+            <p>
+                where \(\mathbf{v}\) is the velocity of the air particle and \(\mathbf{v}_e(t)\) is the velocity of the Earth at the poistion of the particle.
+
+            </p>
+
+            <p>
+                Before we solve this problem, we have to ask a fundamental question: Are these the only forces acting on the parcel of air? (Not including gravity)
+            </p>
+
+            <p>
+                Well, no... There are three of what physicists call "sudo-forces" in this problem. These forces, like the name impies, are not really real, and they definitely are not fundamental. 
+                While the force of a low-pressure zone, and the force of drag on the particles of air are well defined and easy to understand, sudo-forces are much more vague and 
+                mysterious. In order to understand the problem better, lets define what sudo-forces are.
+            </p>
+
+            <p>
+                TO BE CONTINUED
+            </p>
+
+
+
+
+<!-- 
+            <h2>2. Designing the Classes and Methods</h2>
+
+            <h2>3. Gravitational Force Calculation</h2>
+
+            <h2>4. Integrating the Motion</h2>
+
+            <h2>5. Animating the Simulation</h2>
+
+            <h2>In The End...</h2>
+            <p>
+
+            </p> -->
+
+        </div>
+    </section>
+</main>
+</body>
+</html>
