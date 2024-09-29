@@ -21,7 +21,7 @@
     </nav>
     <section>
         <div>
-            <h1>Modeling a Hurricane, Defining Sudo-Forces and Understanding the Corriolis Effect</h1>
+            <h1>Modeling a Hurricane, Deriving Sudo-Forces and Understanding the Corriolis Effect</h1>
 
             <h2>0. Preface</h2>
 
@@ -85,6 +85,107 @@
                 mysterious. In order to understand the problem better, lets define what sudo-forces are.
             </p>
 
+            <h2>2. Deriving Sudo-Forces</h2>
+
+            <p>
+                Sudo-forces arise from rotating frames. An observer that sits on a rotating frame that is large enough might not notice that they are rotating (Like you on the Earth), so they
+                will percive forces that are not fundamental. These forces are called the Euler, Centrifugal and Corriolis force. Let's find out how to mathemtaically describe these forces.
+            </p>
+
+            <p>
+                Let's first imagine two coordinate systems, one which is stationary that we will call \(\mathbf{e}_x\) and \(\mathbf{e}_y\) , the second coordinate system \(\mathbf{\tilde{e}}_x\) and \(\mathbf{\tilde{e}}_y\) which is rotating at angle \(\mathbf{\phi}(t) \) with respect to the first coordinate system.
+                We will call the first frame the "normal frame" and the second frame the "\(\sim\) frame"
+            </p>
+
+            <p>
+                Let's also imagine a force vector we will call \(\mathbf{F}_A\) in the normal frame and \(\mathbf{F}_B\) in the /(/sim/) frame. These forces are the exact same, it is only our perception of this force that changes. To make this easier to imagine
+                think about how your computer infront of you is upright when looking at it normally, but when you tilt your head, the computer appears to be slanted, and if you rotate your head with constant rotation velocity
+                the computer will also appear to rotate with that same constant rotation velocity.
+            </p>
+
+            <p>
+                We can equate these two forces usign a "rotation tensor" \(\mathbf{R}(\phi)\). So our equaition equating these forces becomes: \[\mathbf{F_A} = \mathbf{R}(\phi)[\mathbf{F_B}]\] 
+            </p>
+            <p>
+                Our rotation equation applies the following principles to \(\mathbf{\widetilde{e}}_x\) and \(\mathbf{\widetilde{e}}_y\):
+                
+                \[ \mathbf{\tilde{e}}_x = \cos(\phi)\mathbf{e}_x + \sin(\phi)\mathbf{e}_y \]
+                \[ \mathbf{\tilde{e}}_y = -\sin(\phi)\mathbf{e}_x + \cos(\phi)\mathbf{e}_y \]
+            </p>
+
+            <p>
+                Deriving this equations with respect to time gives:
+
+                \[ \mathbf{\dot{\tilde{e}}}_x = -\sin(\phi)\dot{\phi}\mathbf{e}_x + \cos(\phi)\mathbf{e}_y \]
+                \[ \mathbf{\dot{\tilde{e}}}_y = -\cos(\phi)\dot{\phi}\mathbf{e}_x - \sin(\phi)\mathbf{e}_y \]
+            </p>
+
+            <p>
+                This simplifies to:
+
+                \[ \mathbf{\dot{\tilde{e}}}_x = \dot{\phi}\mathbf{\tilde{e}}_y \]
+                \[ \mathbf{\dot{\tilde{e}}}_y = -\dot{\phi}\mathbf{\tilde{e}}_x \]
+            </p>
+
+            <p>
+                Since we know that \(\mathbf{r} = x\mathbf{e}_x + y\mathbf{e}_y = \tilde{x}\mathbf{\tilde{e}}_x + \tilde{x}\mathbf{\tilde{e}}_y \) is the position of the point our force vector starts.
+
+                
+
+
+            </p>
+
+            <p>
+                Differentiating \(\mathbf{r}\) with respect to time gives:
+                \[
+                \mathbf{v} = \dot{\tilde{x}} \mathbf{\tilde{e}}_x + \tilde{x} \dot{\phi} \mathbf{\tilde{e}}_y + \dot{\tilde{y}} \mathbf{\tilde{e}}_y - \tilde{y} \dot{\phi} \mathbf{\tilde{e}}_x
+                \]
+            </p>
+            <p>
+                Differentiating the velocity \(\mathbf{v}\) with respect to time gives:
+                \[
+                \ddot{\mathbf{r}} = (\ddot{\tilde{x}} \mathbf{\tilde{e}}_x + \ddot{\tilde{y}} \mathbf{\tilde{e}}_y)
+                + \ddot{\phi}(\tilde{x} \mathbf{\tilde{e}}_y - \tilde{y} \mathbf{\tilde{e}}_x)
+                + \dot{\phi}^2(\tilde{x} \mathbf{\tilde{e}}_x + \tilde{y} \mathbf{\tilde{e}}_y)
+                + 2\dot{\phi}(\dot{\tilde{x}} \mathbf{\tilde{e}}_y - \dot{\tilde{y}} \mathbf{\tilde{e}}_x) = \frac{\mathbf{F}_A}{m}
+                \]
+            </p>
+            
+            <p>
+                Then:
+                \[
+                \frac{F_B}{m} = \tilde{a} + \ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) - \dot{\phi}^2 \mathbf{\tilde{r}} + 2\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}})
+                \]
+            </p>
+            
+            <p>
+                Finally:
+                \[
+                m\tilde{a} = F_B = m\ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) + m\dot{\phi}^2 \mathbf{\tilde{r}} - 2m\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}})
+                \]
+            </p>
+
+            <p>
+                Where:
+            </p>
+
+            <p>
+                 \( m\ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) \) is called the Euler force.
+            </p>
+            <p>
+                 \( m\dot{\phi}^2 \mathbf{\tilde{r}} \) is called the Centrifugal force.
+            </p>
+            <p>
+                 \( -2m\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}}) \) is called the Corriolis effect.
+            </p>
+
+            <p>
+                Now that we have define what Sudo-Forces are, we can move on to modeling a hurricane on a rotating flat Earth.
+            </p>
+
+            <h2>3. Setting Up a System of Equations</h2>
+            
+            
             <p>
                 TO BE CONTINUED
             </p>
