@@ -21,7 +21,7 @@
     </nav>
     <section>
         <div>
-            <h1>Modeling a Hurricane, Deriving Sudo-Forces and Understanding the Corriolis Effect</h1>
+            <h1>Modeling a Hurricane and Deriving Sudo-Forces</h1>
 
             <h2>0. Preface</h2>
 
@@ -56,7 +56,7 @@
                 Let us assume the low-pressure center has a
                 position vector  that is fixed to a particular location on the earth \( \mathbf{r}_0(t) \) away from the
                 “North pole,” which is the center of the disk. Suppose the low-pressure zone establishes a
-                vector field that we can imagine pulls on parcels of air with a force \[ \mathbf{F}_p(\mathbf{r}, t) = -F_0(\mathbf{r} - \mathbf{r}_0(t))  \] 
+                vector field that we can imagine pulls on parcels of air with a force \[ \mathbf{F}_{\text{Low}}(\mathbf{r}, t) = -F_0(\mathbf{r} - \mathbf{r}_0(t))  \] 
             </p>
 
             <p style="text-align: center;">
@@ -67,7 +67,7 @@
             <p>
                 Let's imagine a single particle of air which is initially moving with the earth. These air particles also
                 experience a drag force when they move relative to the earth’s surface:
-                \[ \mathbf{F}_d = -c_s(\mathbf{v} - \mathbf{v}_e(t))  \] 
+                \[ \mathbf{F}_{\text{Drag}} = -c_s(\mathbf{v} - \mathbf{v}_e(t))  \] 
             </p>
 
             <p>
@@ -184,28 +184,124 @@
             </p>
 
             <h2>3. Setting Up a System of Equations</h2>
-            
+
+            <p>
+                The first step we need to do before coding up our hurricane model is to define how any given particle will move. Let's use Newton's Third Law and take the sum of the forces.
+            </p>
             
             <p>
-                TO BE CONTINUED
+                \[
+                \sum \mathbf{F} = m\frac{dv}{dt} = \mathbf{F}_{\text{Drag}} + \mathbf{F}_D + \mathbf{F}_{\text{Centrifugal}} + \mathbf{F}_{\text{Coriolis}}
+                \]
             </p>
 
-
-
-
-<!-- 
-            <h2>2. Designing the Classes and Methods</h2>
-
-            <h2>3. Gravitational Force Calculation</h2>
-
-            <h2>4. Integrating the Motion</h2>
-
-            <h2>5. Animating the Simulation</h2>
-
-            <h2>In The End...</h2>
             <p>
+                Note here how there is no Euler force acting on our particle, this is because the Earth's rotation is constant, so the \(\ddot{\phi}\) term equals zero.
+            </p>
 
-            </p> -->
+            <p>
+                Now we break up our forces into x and y conponents, and if we take into account our position vectors, our System Of Equations becomes:
+
+                \[
+                \begin{cases}
+                \frac{dx}{dt} = v_x \\
+                \frac{dy}{dt} = v_y \\
+                \frac{dv_x}{dt} = -F_0 (x - x_0) - c_s v_x + 2\Omega v_y - \Omega^2 x \\
+                \frac{dv_y}{dt} = -F_0 (y - y_0) - c_s v_y - 2\Omega v_x - \Omega^2 y
+                \end{cases}
+                \]
+
+
+            </p>
+
+            <h2>4. Simulating the Motion of Air Parcels</h2>
+            <p>
+                Now that we have the system of equations, we can proceed with simulating the motion of air parcels. Using Python, we can numerically solve the equations using the <code>solve_ivp</code> function from SciPy. This function solves the initial value problem for systems of ordinary differential equations (ODEs).
+            </p>
+    
+            <p>
+                The parameters we are using in this simulation are based on real-world values for the drag coefficient, Coriolis parameter, and the Earth’s angular velocity. We assume a low-pressure center at a fixed position, represented by \( r_0 \), and initialize the air parcels at random locations within the Earth's boundary. 
+            </p>
+    
+            <p>
+                Our Python code to solve this system of equations looks like this:
+            </p>
+    
+            <pre>
+    <code>
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.integrate import solve_ivp
+    
+    F0 = 1.34e-7                    # kg/s^2
+    Cs = 1.736e-4                   # kg/s
+    r0 = np.array([2.416e6, 0 ])    # m
+    Omega = 7.2722e-5               # rad/s
+    Re = 6437378                    # m
+    
+    time = (0,172800)               # 0 to 2 days in seconds
+    dt = 1                          # 1 second
+    
+    t_eval = np.arange(time[0], time[1], dt)
+    
+    np.random.seed() 
+    parcels = 10
+    angles = np.linspace(0, 2 * np.pi, parcels, endpoint=False)
+    radii = np.sqrt(np.random.uniform(0, Re**2, parcels))
+    x_init = radii * np.cos(angles)
+    y_init = radii * np.sin(angles)
+    initial_conditions = []
+    
+    for i in range(parcels):
+        x0, y0 = x_init[i], y_init[i]
+        vx0, vy0 = 0, 0  
+        initial_conditions.append([x0, y0, vx0, vy0])
+    
+    def SOEs(t, state):
+        x, y, vx, vy = state
+        deltaX = x - r0[0]
+        deltaY = y - r0[1]
+    
+        Fx = -F0 * deltaX - Cs * vx + 2 * Omega * vy - Omega**2 * x
+        Fy = -F0 * deltaY - Cs * vy - 2 * Omega * vx - Omega**2 * y
+        return [vx, vy, Fx, Fy]
+    
+    trajectories = []
+    
+    for ic in initial_conditions:
+        sol = solve_ivp(SOEs, time, ic, t_eval=t_eval, method='RK45', max_step=1000)
+        trajectories.append((sol.y[0], sol.y[1]))
+    
+    </code>
+            </pre>
+    
+            <p>
+                The output of this simulation is a set of trajectories representing the movement of air particles under the influence of the forces we discussed earlier.
+            </p>
+    
+            <h2>5. Results and Visualization</h2>
+            <p>
+                The figure below shows the trajectories of the air particles, with the Earth boundary shown as a dashed circle and the low-pressure center marked with a red dot. As the parcels move, they experience the Coriolis effect, which causes their paths to curve as they are deflected by the Earth's rotation.
+            </p>
+    
+            <img src="../docs/hurricane.png" alt="Air Parcel Trajectories" style="width:100%; max-width:600px;">
+    
+            <p>
+                The plot provides a visual representation of how air parcels swirl around a low-pressure zone, simulating the early stages of a hurricane formation.
+            </p>
+    
+            <h2>6. In the End...</h2>
+            <p>
+                By simulating the motion of air particles in a rotating frame of reference, we can observe how pseudo-forces like the Coriolis effect and centrifugal force influence the trajectory of these particles. The combined effect of these forces is what causes the characteristic swirling pattern seen in hurricanes.
+            </p>
+    
+            <p>
+                While this model is simplified—assuming a flat Earth and a fixed low-pressure center—it provides valuable insights into the dynamics at play. In reality, a hurricane is a much more complex system with additional factors such as changes in air pressure, moisture, and heat transfer.
+            </p>
+    
+            <p>
+                In future blog posts, we could extend this model by incorporating additional meteorological factors, or by using a spherical Earth model for a more accurate representation.
+            </p>
 
         </div>
     </section>
