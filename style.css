@@ -232,3 +232,14 @@ pre code {
         margin-bottom: 10px;
     }
 }
+
+/* Adjust font size for MathJax equations on small screens */
+@media screen and (max-width: 600px) {
+    .mjx-chtml {
+        font-size: 0.9em; /* Reduce font size by 10% */
+    }
+    .mjx-display {
+        overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    }
+}
+
