@@ -54,17 +54,7 @@ nav ul li a:hover {
     background-color: #444;
 }
 
-/* Section Styles */
-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
 
-section div {
-    flex: 1;
-    min-width: 250px;
-}
 
 /* Heading Styles */
 h1 {
@@ -198,6 +188,27 @@ pre code {
     font-size: 0.9rem;
     line-height: 1.4;
 }
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#search-input, #sort-select {
+    padding: 8px;
+    font-size: 16px;
+}
+
+#search-input {
+    flex: 1;
+}
+
+#sort-select {
+    width: 200px;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

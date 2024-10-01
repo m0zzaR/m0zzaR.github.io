@@ -24,11 +24,20 @@
             Welcome to my engineering blog! Below, you'll find my latest blog posts.
             Click on a post to read more about it.
         </p>
+
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="Search blog posts...">
+            <select id="sort-select">
+                <option value="latest">Oldest</option>
+                <option value="earliest">Newest</option>
+            </select>
+        </div>
+
         <!-- Blog post grid -->
         <div class="blog-grid">
 
             <!-- Celestial Body Simulation Post -->
-            <a href="./blogs/celestialbodies.html" class="blog-post" date-date="2024-09-26">
+            <a href="./blogs/celestialbodies.html" class="blog-post" data-date="2024-09-26" data-tags="simulation, physics, celestial mechanics">
                 <h2>Building an Interactive Celestial Body Simulation (Part 1)</h2>
                 <p>
                     A project simulating the gravitational interactions between two bodies in space-time.
@@ -38,7 +47,7 @@
                 </p>
             </a>
 
-            <a href="./blogs/hurricane.html" class="blog-post" date-date="2024-09-29">
+            <a href="./blogs/hurricane.html" class="blog-post" data-date="2024-09-30" data-tags="simulation, meteorology, physics, hurricanes">
                 <h2>Modeling a Hurricane and Deriving Sudo-Forces</h2>
                 <p>
                     A simulation of a hurricane on a flat rotating Earth (No conspiracy theroies please)
@@ -48,13 +57,13 @@
                 </p>
             </a>
 
-            <a href="./blogs/orbitalmechanics.html" class="blog-post" date-date="2024-09-31">
+            <a href="./blogs/orbitalmechanics.html" class="blog-post" data-date="2024-09-31" data-tags="simulation, physics, celestial mechanics">
                 <h2>Insight into Orbital Mechanics: Celestial Body Simulation (Part 2)</h2>
                 <p>
-                    Work in progress
+                    Deriving the math I will use later to build my Celestial Body Simulation
                 </p>
                 <p style="color: grey;">
-                    Written: 9/30/2024
+                    Written: 9/31/2024
                 </p>
             </a>
 
@@ -62,5 +71,6 @@
         </div>
     </section>
 </main>
+<script src="script.js"></script>
 </body>
 </html>
