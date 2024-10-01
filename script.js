@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const blogGrid = document.querySelector('.blog-grid');
     const blogPosts = Array.from(document.querySelectorAll('.blog-post'));
 
+    // Function to parse date strings in 'YYYY-MM-DD' format
+    function parseDateString(dateString) {
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(year, month - 1, day);
+    }
+
     // Function to filter and sort blog posts
     function updateBlogPosts() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -21,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Sort blog posts based on date
         filteredPosts.sort((a, b) => {
-            const dateA = new Date(a.getAttribute('data-date'));
-            const dateB = new Date(b.getAttribute('data-date'));
+            const dateA = parseDateString(a.getAttribute('data-date'));
+            const dateB = parseDateString(b.getAttribute('data-date'));
             return sortOrder === 'latest' ? dateB - dateA : dateA - dateB;
         });
 
