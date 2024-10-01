@@ -24,23 +24,23 @@
             <h2>0. Preface</h2>
 
             <p>
-                This blog will act as the mathematical ground work for future implementations of my <a href="https://github.com/m0zzaR/ThreeBodyProblem" target="_blank">Three Body Problem</a>. project.
-                In order to make a accurate simulation, one should have a deep understand of the physics behind the simulation. All of the math used here was learned in my 
+                This blog will act as the mathematical groundwork for future implementations of my <a href="https://github.com/m0zzaR/ThreeBodyProblem" target="_blank">Three Body Problem</a>. project.
+                In order to make an accurate simulation, one should have a deep understanding of the physics behind the simulation. All of the math used here was learned in my 
                 <a href="https://github.com/m0zzaR/Engineering-Mechanics-2" target="_blank">Engineering Mechanics</a> class. Derived and taught by <a href="https://me.berkeley.edu/people/ken-kamrin/" target="_blank">Prof. Ken Kamrin.</a>
             </p>
             
-            <h2>1. Orbital Mechancis</h2>
+            <h2>1. Orbital Mechanics</h2>
 
             <p>
-                Let's start our jounrey of understanding the Universive by taking into consideration a celestial body that is most familiar to us, the Earth.
-                If we want to analzye the interaction between our Earth, a very massive object, and a satilite. We say that \(m << M_e\), in english
-                this just means that the mass of the satilite is so much smaller than the mass of the Earth that it is inconsiquential. Let's also asume that the center
-                of mass of the Earth rests at the origin (0,0) and the mass of the satilite is at some distance \(\mathbf{r}(t)\).
+                Let's start our journey of understanding the Universe by taking into consideration a celestial body that is most familiar to us, the Earth.
+                If we want to analyze the interaction between our Earth, a very massive object, and a satellite. We say that \(m << M_e\), in English
+                this just means that the mass of the satellite is so much smaller than the mass of the Earth that it is inconsequential. Let's also assume that the center
+                of mass of the Earth rests at the origin (0,0) and the mass of the satellite is at some distance \(\mathbf{r}(t)\).
             </p>
 
             <p>
-                Let's first define our simple Cartesian Kinematics for a 3 dimensional space:
-
+                Let's first define our simple Cartesian Kinematics for a 3-dimensional space:
+                <div class="math-display">
                 \[
                 \begin{cases}
                 \mathbf{r} = x\mathbf{e}_x + y\mathbf{e}_y + z\mathbf{e}_z \\
@@ -48,82 +48,88 @@
                 \mathbf{a} = \mathbf{\dot{v}} = \ddot{x}\mathbf{e}_x + \ddot{y}\mathbf{e}_y + \ddot{z}\mathbf{e}_z
                 \end{cases}
                 \]
-
-                Next we define the force the satelite feels from the mass of the Earth, as Newton's Inverse Square Law:
-
+                </div>
+                Next we define the force the satellite feels from the mass of the Earth, as Newton's Inverse Square Law:
+                <div class="math-display">
                 \[
                 \mathbf{F}_g = G\frac{M_em}{|\mathbf{r}|^2}[\frac{-\mathbf{r}}{|\mathbf{r}|}]
                 \]
-
-                Now, for simplicities sake, let's define:
-
+                </div>
+                Now, for simplicity's sake, let's define:
+                <div class="math-display">
                 \[B = GM_e\]
-
+                </div>
                 And sum the forces:
+                <div class="math-display">
                 \[
                 \sum\mathbf{F} = m\mathbf{a} \sim -B\frac{\mathbf{r}}{|\mathbf{r}|^3}  = \mathbf{a}
                 \]
-
-                This is called the "trajectory equation". Note also that since the force the satelite exerts on the Earth is extremely small, we can omit it from our equation of acceleration.
-
+                </div>
+                This is called the "trajectory equation". Note also that since the force the satellite exerts on the Earth is extremely small, we can omit it from our equation of acceleration.
             </p>
 
             <p>
                 We can also define \(\mathbf{F}_g\) as a potential, which will allow us to calculate the escape velocity on Earth:
-
+                <div class="math-display">
                 \[
                 \mathbf{F}_g = -\nabla \mathbf{U}_g
                 \]
+                </div>
             </p>
             <p style="text-align: center;">
                 Where
             </p>
 
             <p>
+                <div class="math-display">
                 \[
                 U_g = -B\frac{m}{|\mathbf{r}|}
                 \]
+                </div>
             </p>
             <p>
-                Using the work energy theorem:
+                Using the work-energy theorem:
+                <div class="math-display">
                 \[
                 \frac{1}{2}mv^2 -B\frac{m}{|\mathbf{r}|} = constant
                 \]
+                </div>
             </p>
             <p>
-                Setting the constant to 0 in this case signifies just enough energy to reach inifinty, so lets do that and solve for v:
-
+                Setting the constant to 0 in this case signifies just enough energy to reach infinity, so let's do that and solve for \(v\):
+                <div class="math-display">
                 \[
                 v_e = \sqrt{\frac{2B}{|\mathbf{r}|}} = 11,200 \frac{m}{s}
                 \]
+                </div>
             </p>
             <p>
-                Unforunately, the Work and Energy theorum cannot tell us anything about trajectories since \(v_e\) is a magnitude and not a vector. 
-                In order to get more details lets augment this with another conservation law, Angular Momentum:
-
+                Unfortunately, the work-energy theorem cannot tell us anything about trajectories since \(v_e\) is a magnitude and not a vector. 
+                In order to get more details, let's augment this with another conservation law, Angular Momentum:
+                <div class="math-display">
                 \[
                 \mathbf{H} = m\mathbf{r} \times \mathbf{v}
                 \]
-
-                It is important to note here, that \(\mathbf{r}\) and \(\mathbf{v}\) always lie in the same plane. Two objects in space will always have 
-                a velocity and distance vectors that are perpendicular to eachother. 
+                </div>
+                It is important to note here that \(\mathbf{r}\) and \(\mathbf{v}\) always lie in the same plane. Two objects in space will always have 
+                velocity and distance vectors that are perpendicular to each other. 
             </p>
 
             <p>
-                Let's find some explicit expressions for \(\mathbf{r}\) and \(\mathbf{v}\) using Kinematics in polar coordinates:
-
+                Let's find some explicit expressions for \(\mathbf{r}\) and \(\mathbf{v}\) using kinematics in polar coordinates:
+                <div class="math-display">
                 \[
                 \begin{cases}
                 \mathbf{r} = r\mathbf{e}_r \\
-                \mathbf{v} = \mathbf{\dot{r}} = \dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta  \\
+                \mathbf{v} = \mathbf{\dot{r}} = \dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta \\
                 \end{cases}
                 \]
-
+                </div>
             </p>
 
             <p>
                 Now \(\mathbf{H}\) can be expressed as such:
-
+                <div class="math-display">
                 \[
                 \mathbf{H} = mr\mathbf{e}_r \times (\dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta)
                 \]
@@ -133,12 +139,12 @@
                 \[
                 \dot{\theta} = \frac{H_0}{mr^2}
                 \]
-
+                </div>
             </p>
 
             <p>
                 After this point, I cannot really explain what my professor did or why he did it, but nonetheless here it is...
-
+                <div class="math-display">
                 \[
                 \frac{1}{2}mv^2 -B\frac{m}{|\mathbf{r}|} = E_0
                 \]
@@ -154,45 +160,46 @@
                 \[
                 \frac{1}{2}m((\frac{dr}{d\theta}\frac{H_0}{mr^2})^2 + (\frac{H_0}{mr})^2) -B\frac{m}{|\mathbf{r}|} = E_0
                 \]
+                </div>
             </p>
             <p>
-                Okay so now that we did whatever that was, now we are going to define the different paths orbiting bodies can make:
-
+                Okay, so now that we did whatever that was, now we are going to define the different paths orbiting bodies can make:
+                <div class="math-display">
                 \[
-                r(\theta) = \frac{P}{1 + eCos(\theta - \phi)}
+                r(\theta) = \frac{P}{1 + e\cos(\theta - \phi)}
                 \]
+                </div>
             </p>
             <p style="text-align: center;">
                 Where
             </p>
             <p style="text-align: center;">
-                Trajectory Paramater: \( P = \frac{H_0^2}{m^2B}\) 
-
+                Trajectory Parameter: \( P = \frac{H_0^2}{m^2B}\)
             </p>
-            <p style="text-align: center">
-                Eccentricity: \( e = (1 + \frac{2E_0H_0^2}{m^3B^3} ) \) 
-
+            <p style="text-align: center;">
+                Eccentricity: \( e = \sqrt{1 + \frac{2E_0H_0^2}{m^3B^3}} \)
             </p>
-            <p style="text-align: center">
-                Offset Angle: \( \theta_i - Cos^\text{-1}(\frac{P - r_i}{er_i}) \)
+            <p style="text-align: center;">
+                Offset Angle: \( \theta_i - \cos^\text{-1}(\frac{P - r_i}{er_i}) \)
             </p>
             <p>
                 This equation defines "conic sections" in orbits.
             </p>
             <img src="../docs/conic-section.jpg" alt="Conic Sections" style="width:100%; max-width:600px;">
             <p>
-                When e = 0, the orbit is a circle
+                When \( e = 0 \), the orbit is a circle.
             </p>
             <p>
-                When 0 < e < 1, the orbit is a ellipse
+                When \( 0 < e < 1 \), the orbit is an ellipse.
             </p>
             <p>
-                When e = 1, the orbit is a parabola
+                When \( e = 1 \), the orbit is a parabola.
             </p>
             <p>
-                When e > 1, the orbit is a hyperbola
+                When \( e > 1 \), the orbit is a hyperbola.
             </p>
             <h2>TO BE CONTINUED</h2>
         </div>
     </section>
 </main>
+</html>

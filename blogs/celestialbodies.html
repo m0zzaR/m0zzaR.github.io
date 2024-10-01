@@ -25,13 +25,13 @@
             <h1>Building an Interactive Celestial Body Simulation (Part 1)</h1>
             <p>
                 I recently developed a program that simulates the attractive force of two objects in space time using
-                Newtonian Mechanics. In this post, I will walk you through my proccess of building this program.
+                Newtonian Mechanics. In this post, I will walk you through my process of building this program.
             </p>
             <h2>0. Preface</h2>
             <p>
-                 My original (and current) idea for this project was/is to create a video game like simuation software 
-                 for users to see how any number of bodies in space would interact with eachother. The current iteration
-                 is not quite there yet, I still have to refine some bugs, and develop an interative platform that 
+                 My original (and current) idea for this project was/is to create a video game-like simulation software 
+                 for users to see how any number of bodies in space would interact with each other. The current iteration
+                 is not quite there yet, I still have to refine some bugs, and develop an interactive platform that 
                  makes it easy for even a young child to play with.
             </p>
             <h2>1. Defining the Problem</h2>
@@ -40,68 +40,67 @@
                 two celestial bodies and tracks their motion over time. I knew it would be more of a challenge
                 for me to code the project than it would be to define the mathematics, so I brushed up on some
                 Python libraries that I planned to use, like matplotlib.
-
             </p>
-                <p>
-                    First, let's start with what I know best, the mechanics:
-                    I am using Newtonian Mechanics for this problem even though they are known to not work for
-                    very large masses, like black holes. But since I don't know General Relativity, this is the 
-                    best it's gonna get (for now).
-                </p>
-                <p>
-                    The majority of the heavy lifting is done by the Inverse Square Law:
-                </p>
-                <p>
-                    \[ \vec{\mathbf{F}} = G \frac{m_1 m_2}{\vec{\mathbf{R}}^2} \]
-                </p>
+            <p>
+                First, let's start with what I know best, the mechanics:
+                I am using Newtonian Mechanics for this problem even though they are known to not work for
+                very large masses, like black holes. But since I don't know General Relativity, this is the 
+                best it's gonna get (for now).
+            </p>
+            <p>
+                The majority of the heavy lifting is done by the Inverse Square Law:
+            </p>
+            <div class="math-display">
+                \[ \vec{\mathbf{F}} = G \frac{m_1 m_2}{\vec{\mathbf{R}}^2} \]
+            </div>
 
-                <p style="text-align: center;">
-                    where
-                </p>
-                
-                <p>
-                     \[ \vec{\mathbf{R}} = x\vec{\mathbf{i}} + y\vec{\mathbf{j}} \] 
-                </p>
-                
-                <p>
-                    Next we define some basic kinematic equations, which are updated with small time steps given
-                    by the Inverse Square Law defined above. I used:
-                </p>
-                
-                <p>
-                    \[ \vec{\mathbf{v}}(t) = \vec{\mathbf{a}}t \]
-                </p>
-                
-                <p style="text-align: center;">
-                    and
-                </p>
-                
-                <p>
-                    \[ \vec{\mathbf{r}}(t) = \vec{\mathbf{v}}t + \frac{1}{2} \vec{\mathbf{a}}t^2 \]
-                </p>
-                <p>
-                    For sake of completeness, I will also define how I computed the x and y components of the force vector:
-                </p>
-                
-                <p>
-                    \[ F_x = \vec{\mathbf{F}} \frac{x_2 - x_1}{|\vec{\mathbf{R}}|} \]
-                </p>
-                
-                <p style="text-align: center;">
-                    and
-                </p>
-                
-                <p>
-                    \[ F_y = \vec{\mathbf{F}} \frac{y_2 - y_1}{|\vec{\mathbf{R}}|} \]
-                </p>
-                
-                <p>
-                    Where \( x_2 \) and \( y_2 \) correspond to the position of the second body, and \( x_1 \) and \( y_1 \) to the first body.
-                </p>
-                <p>
-                    Now lets move onto the code...
-                </p>
-    
+            <p style="text-align: center;">
+                where
+            </p>
+            
+            <div class="math-display">
+                \[ \vec{\mathbf{R}} = x\vec{\mathbf{i}} + y\vec{\mathbf{j}} \]
+            </div>
+            
+            <p>
+                Next we define some basic kinematic equations, which are updated with small time steps given
+                by the Inverse Square Law defined above. I used:
+            </p>
+            
+            <div class="math-display">
+                \[ \vec{\mathbf{v}}(t) = \vec{\mathbf{a}}t \]
+            </div>
+            
+            <p style="text-align: center;">
+                and
+            </p>
+            
+            <div class="math-display">
+                \[ \vec{\mathbf{r}}(t) = \vec{\mathbf{v}}t + \frac{1}{2} \vec{\mathbf{a}}t^2 \]
+            </div>
+            <p>
+                For sake of completeness, I will also define how I computed the x and y components of the force vector:
+            </p>
+            
+            <div class="math-display">
+                \[ F_x = \vec{\mathbf{F}} \frac{x_2 - x_1}{|\vec{\mathbf{R}}|} \]
+            </div>
+            
+            <p style="text-align: center;">
+                and
+            </p>
+            
+            <div class="math-display">
+                \[ F_y = \vec{\mathbf{F}} \frac{y_2 - y_1}{|\vec{\mathbf{R}}|} \]
+            </div>
+            
+            <p>
+                Where \( x_2 \) and \( y_2 \) correspond to the position of the second body, and \( x_1 \) and \( y_1 \) to the first body.
+            </p>
+            <p>
+                Now let's move onto the code...
+            </p>
+
             <h2>2. Designing the Classes and Methods</h2>
             <p>
                 The key part of the design is the <code>CelestialBody</code> class. Each celestial body has a

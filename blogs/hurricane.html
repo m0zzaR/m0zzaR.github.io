@@ -45,19 +45,21 @@
                 pseudoforces that influence the air particles as they attract to the low-pressure zone cause
                 the air to swirl.
 
-                
             </p>
 
             <p>
                 We will make this problem more tractable by assuming the earth is a flat disk (no
-                conspiracy theories please!) spinning at some arbritray rate.
+                conspiracy theories please!) spinning at some arbitrary rate.
             </p>
 
             <p>
                 Let us assume the low-pressure center has a
                 position vector  that is fixed to a particular location on the earth \( \mathbf{r}_0(t) \) away from the
                 “North pole,” which is the center of the disk. Suppose the low-pressure zone establishes a
-                vector field that we can imagine pulls on parcels of air with a force \[ \mathbf{F}_{\text{Low}}(\mathbf{r}, t) = -F_0(\mathbf{r} - \mathbf{r}_0(t))  \] 
+                vector field that we can imagine pulls on parcels of air with a force 
+                <div class="math-display">
+                    \[ \mathbf{F}_{\text{Low}}(\mathbf{r}, t) = -F_0(\mathbf{r} - \mathbf{r}_0(t))  \] 
+                </div>
             </p>
 
             <p style="text-align: center;">
@@ -68,12 +70,13 @@
             <p>
                 Let's imagine a single particle of air which is initially moving with the earth. These air particles also
                 experience a drag force when they move relative to the earth’s surface:
-                \[ \mathbf{F}_{\text{Drag}} = -c_s(\mathbf{v} - \mathbf{v}_e(t))  \] 
+                <div class="math-display">
+                    \[ \mathbf{F}_{\text{Drag}} = -c_s(\mathbf{v} - \mathbf{v}_e(t))  \] 
+                </div>
             </p>
 
             <p>
-                where \(\mathbf{v}\) is the velocity of the air particle and \(\mathbf{v}_e(t)\) is the velocity of the Earth at the poistion of the particle.
-
+                where \(\mathbf{v}\) is the velocity of the air particle and \(\mathbf{v}_e(t)\) is the velocity of the Earth at the position of the particle.
             </p>
 
             <p>
@@ -81,7 +84,7 @@
             </p>
 
             <p>
-                Well, no... There are three of what physicists call "sudo-forces" in this problem. These forces, like the name impies, are not really real, and they definitely are not fundamental. 
+                Well, no... There are three of what physicists call "sudo-forces" in this problem. These forces, like the name implies, are not really real, and they definitely are not fundamental. 
                 While the force of a low-pressure zone, and the force of drag on the particles of air are well defined and easy to understand, sudo-forces are much more vague and 
                 mysterious. In order to understand the problem better, lets define what sudo-forces are.
             </p>
@@ -90,7 +93,7 @@
 
             <p>
                 Sudo-forces arise from rotating frames. An observer that sits on a rotating frame that is large enough might not notice that they are rotating (Like you on the Earth), so they
-                will percive forces that are not fundamental. These forces are called the Euler, Centrifugal and Corriolis force. Let's find out how to mathemtaically describe these forces.
+                will perceive forces that are not fundamental. These forces are called the Euler, Centrifugal and Corriolis force. Let's find out how to mathematically describe these forces.
             </p>
 
             <p>
@@ -100,70 +103,80 @@
 
             <p>
                 Let's also imagine a force vector we will call \(\mathbf{F}_A\) in the normal frame and \(\mathbf{F}_B\) in the \(\sim\) frame. These forces are the exact same, it is only our perception of this force that changes. To make this easier to imagine
-                think about how your computer infront of you is upright when looking at it normally, but when you tilt your head, the computer appears to be slanted, and if you rotate your head with constant rotation velocity
+                think about how your computer in front of you is upright when looking at it normally, but when you tilt your head, the computer appears to be slanted, and if you rotate your head with constant rotation velocity
                 the computer will also appear to rotate with that same constant rotation velocity.
             </p>
 
             <p>
-                We can equate these two forces using a "rotation tensor" \(\mathbf{R}(\phi)\). So our equaition equating these forces becomes: \[\mathbf{F_A} = \mathbf{R}(\phi)[\mathbf{F_B}]\] 
+                We can equate these two forces using a "rotation tensor" \(\mathbf{R}(\phi)\). So our equation equating these forces becomes: 
+                <div class="math-display">
+                    \[\mathbf{F_A} = \mathbf{R}(\phi)[\mathbf{F_B}]\] 
+                </div>
             </p>
             <p>
                 Our rotation equation applies the following principles to \(\mathbf{\widetilde{e}}_x\) and \(\mathbf{\widetilde{e}}_y\):
-                
-                \[ \mathbf{\tilde{e}}_x = \cos(\phi)\mathbf{e}_x + \sin(\phi)\mathbf{e}_y \]
-                \[ \mathbf{\tilde{e}}_y = -\sin(\phi)\mathbf{e}_x + \cos(\phi)\mathbf{e}_y \]
+                <div class="math-display">
+                    \[ \mathbf{\tilde{e}}_x = \cos(\phi)\mathbf{e}_x + \sin(\phi)\mathbf{e}_y \]
+                    \[ \mathbf{\tilde{e}}_y = -\sin(\phi)\mathbf{e}_x + \cos(\phi)\mathbf{e}_y \]
+                </div>
             </p>
 
             <p>
                 Deriving this equations with respect to time gives:
-
-                \[ \mathbf{\dot{\tilde{e}}}_x = -\sin(\phi)\dot{\phi}\mathbf{e}_x + \cos(\phi)\mathbf{e}_y \]
-                \[ \mathbf{\dot{\tilde{e}}}_y = -\cos(\phi)\dot{\phi}\mathbf{e}_x - \sin(\phi)\mathbf{e}_y \]
+                <div class="math-display">
+                    \[ \mathbf{\dot{\tilde{e}}}_x = -\sin(\phi)\dot{\phi}\mathbf{e}_x + \cos(\phi)\mathbf{e}_y \]
+                    \[ \mathbf{\dot{\tilde{e}}}_y = -\cos(\phi)\dot{\phi}\mathbf{e}_x - \sin(\phi)\mathbf{e}_y \]
+                </div>
             </p>
 
             <p>
                 This simplifies to:
-
-                \[ \mathbf{\dot{\tilde{e}}}_x = \dot{\phi}\mathbf{\tilde{e}}_y \]
-                \[ \mathbf{\dot{\tilde{e}}}_y = -\dot{\phi}\mathbf{\tilde{e}}_x \]
+                <div class="math-display">
+                    \[ \mathbf{\dot{\tilde{e}}}_x = \dot{\phi}\mathbf{\tilde{e}}_y \]
+                    \[ \mathbf{\dot{\tilde{e}}}_y = -\dot{\phi}\mathbf{\tilde{e}}_x \]
+                </div>
             </p>
 
             <p>
                 Since we know that \(\mathbf{r} = x\mathbf{e}_x + y\mathbf{e}_y = \tilde{x}\mathbf{\tilde{e}}_x + \tilde{x}\mathbf{\tilde{e}}_y \) is the position of the point our force vector starts.
-
-                
-
-
             </p>
 
             <p>
                 Differentiating \(\mathbf{r}\) with respect to time gives:
-                \[
-                \mathbf{v} = \dot{\tilde{x}} \mathbf{\tilde{e}}_x + \tilde{x} \dot{\phi} \mathbf{\tilde{e}}_y + \dot{\tilde{y}} \mathbf{\tilde{e}}_y - \tilde{y} \dot{\phi} \mathbf{\tilde{e}}_x
-                \]
+                <div class="math-display">
+                    \[
+                    \mathbf{v} = \dot{\tilde{x}} \mathbf{\tilde{e}}_x + \tilde{x} \dot{\phi} \mathbf{\tilde{e}}_y + \dot{\tilde{y}} \mathbf{\tilde{e}}_y - \tilde{y} \dot{\phi} \mathbf{\tilde{e}}_x
+                    \]
+                </div>
             </p>
             <p>
                 Differentiating the velocity \(\mathbf{v}\) with respect to time gives:
-                \[
-                \ddot{\mathbf{r}} = (\ddot{\tilde{x}} \mathbf{\tilde{e}}_x + \ddot{\tilde{y}} \mathbf{\tilde{e}}_y)
-                + \ddot{\phi}(\tilde{x} \mathbf{\tilde{e}}_y - \tilde{y} \mathbf{\tilde{e}}_x)
-                + \dot{\phi}^2(\tilde{x} \mathbf{\tilde{e}}_x + \tilde{y} \mathbf{\tilde{e}}_y)
-                + 2\dot{\phi}(\dot{\tilde{x}} \mathbf{\tilde{e}}_y - \dot{\tilde{y}} \mathbf{\tilde{e}}_x) = \frac{\mathbf{F}_A}{m}
-                \]
+                <div class="math-display">
+                    \[
+                    \ddot{\mathbf{r}} = (\ddot{\tilde{x}} \mathbf{\tilde{e}}_x + \ddot{\tilde{y}} \mathbf{\tilde{e}}_y)
+                    + \ddot{\phi}(\tilde{x} \mathbf{\tilde{e}}_y - \tilde{y} \mathbf{\tilde{e}}_x)
+                    + \dot{\phi}^2(\tilde{x} \mathbf{\tilde{e}}_x + \tilde{y} \mathbf{\tilde{e}}_y)
+                    + 2\dot{\phi}(\dot{\tilde{x}} \mathbf{\tilde{e}}_y - \dot{\tilde{y}} \mathbf{\tilde{e}}_x) = \frac{\mathbf{F}_A}{m}
+                    \]
+                </div>
             </p>
             
             <p>
                 Then:
-                \[
-                \frac{F_B}{m} = \tilde{a} + \ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) - \dot{\phi}^2 \mathbf{\tilde{r}} + 2\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}})
-                \]
+                <div class="math-display">
+                    \[
+                    \frac{F_B}{m} = \tilde{a} + \ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) - \dot{\phi}^2 \mathbf{\tilde{r}} + 2\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}})
+                    \]
+                </div>
             </p>
             
             <p>
                 Finally:
-                \[
-                m\tilde{a} = F_B = m\ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) + m\dot{\phi}^2 \mathbf{\tilde{r}} - 2m\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}})
-                \]
+                <div class="math-display">
+                    \[
+                    m\tilde{a} = F_B = m\ddot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{r}}) + m\dot{\phi}^2 \mathbf{\tilde{r}} - 2m\dot{\phi} (\mathbf{e}_z \times \mathbf{\tilde{v}})
+                    \]
+                </div>
             </p>
 
             <p>
@@ -181,7 +194,7 @@
             </p>
 
             <p>
-                Now that we have define what Sudo-Forces are, we can move on to modeling a hurricane on a rotating flat Earth.
+                Now that we have defined what Sudo-Forces are, we can move on to modeling a hurricane on a rotating flat Earth.
             </p>
 
             <h2>3. Setting Up a System of Equations</h2>
@@ -191,9 +204,11 @@
             </p>
             
             <p>
-                \[
-                \sum \mathbf{F} = m\frac{dv}{dt} = \mathbf{F}_{\text{Drag}} + \mathbf{F}_D + \mathbf{F}_{\text{Centrifugal}} + \mathbf{F}_{\text{Coriolis}}
-                \]
+                <div class="math-display">
+                    \[
+                    \sum \mathbf{F} = m\frac{dv}{dt} = \mathbf{F}_{\text{Drag}} + \mathbf{F}_D + \mathbf{F}_{\text{Centrifugal}} + \mathbf{F}_{\text{Coriolis}}
+                    \]
+                </div>
             </p>
 
             <p>
@@ -201,18 +216,17 @@
             </p>
 
             <p>
-                Now we break up our forces into x and y conponents, and if we take into account our position vectors, our System Of Equations becomes:
-
-                \[
-                \begin{cases}
-                \frac{dx}{dt} = v_x \\
-                \frac{dy}{dt} = v_y \\
-                \frac{dv_x}{dt} = -F_0 (x - x_0) - c_s v_x + 2\Omega v_y - \Omega^2 x \\
-                \frac{dv_y}{dt} = -F_0 (y - y_0) - c_s v_y - 2\Omega v_x - \Omega^2 y
-                \end{cases}
-                \]
-
-
+                Now we break up our forces into x and y components, and if we take into account our position vectors, our System Of Equations becomes:
+                <div class="math-display">
+                    \[
+                    \begin{cases}
+                    \frac{dx}{dt} = v_x \\
+                    \frac{dy}{dt} = v_y \\
+                    \frac{dv_x}{dt} = -F_0 (x - x_0) - c_s v_x + 2\Omega v_y - \Omega^2 x \\
+                    \frac{dv_y}{dt} = -F_0 (y - y_0) - c_s v_y - 2\Omega v_x - \Omega^2 y
+                    \end{cases}
+                    \]
+                </div>
             </p>
 
             <h2>4. Simulating the Motion of Air Parcels</h2>
