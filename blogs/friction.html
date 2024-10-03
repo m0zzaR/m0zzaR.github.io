@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Celestial Body Simulation</title>
+    <meta name="description" content="Celestial Body Simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/mathjax-script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<main>
+    <!-- Navigation bar inside the main content box -->
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../blog.html">Engineering Blog</a></li>
+            <li><a href="../docs/resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div>
+
+            <h1> A Rigorous Definition of Friciton </h1>
+
+            <p>
+                Most of us have seen friction as a more-or-less mysterious force that opposes motion. We put it in our Free Body Diagrams
+                and we put it in our F = ma sumations, but is friction really that simple? What if the floor that the friction force interacts with
+                is moving? Or what if every object in the system is moving? How can we define friction then? Let's answer that.
+            </p>
+
+            <h2> Simple Friction </h2>
+
+            <p>
+                First lets start off with a definition of velocity: \(\mathbf{v}_s = \mathbf{v} - \mathbf{v}_\text{wall}\)
+            </p>
+
+            <p>
+                Where \(\mathbf{v}_s\) is the velocity of the whole system, \(\mathbf{v}\) is the velocity of a single object, and \(\mathbf{v}_\text{wall}\) 
+                is the velocity of the "wall" or floor the object rests on. Now we can define friction given different values of \(\mathbf{v}_s\).
+            </p>
+
+            <p style="text-align: center;">
+                If \( |\mathbf{v}_s| > 0 \), then \(\mathbf{F}_t = -\mu F_n \frac{\mathbf{v}_s}{|\mathbf{v}_s|}\)
+            </p>
+            <p style="text-align: center;">
+                If \( |\mathbf{v}_s| = 0 \), then \(|\mathbf{F}_t|\ \leq F_n \)
+            </p>
+
+            <p> Often we model \(\mu\) to be a function of \(|\mathbf{v}_s|\)</p>
+
+            <p style="text-align: center;">
+                \(\mu = \mu_s\) if \( |\mathbf{v}_s| = 0 \) "Static Friction"
+            </p>
+            <p style="text-align: center;">
+                \(\mu = \mu_d\) if \( |\mathbf{v}_s| > 0 \) "Dynamic Friction"
+            </p>
+            <p style="text-align: center;">
+                Where \(\mu_s > \mu_d\) 
+            </p>
+
+            <h2> Complicated Friction </h2>
+
+            <p> The definition above is incomplete because it does not determine \(\mathbf{F}_t\) when \(|\mathbf{v}_s| = 0\), nor does it give the direction of 
+                \(\mathbf{F}_t\) the instant sliding first begins.
+            </p>
+
+            <p>
+                Lets add two resonable assumtions to resolve this:
+            </p>
+
+            <h3>1:</h3>
+            <p>     
+                If \(\mathbf{v}_s = 0\) and the value of \(\mathbf{F}_t\)
+                that would make \(\dot{\mathbf{v}}_s = 0\) satisfies
+                \(|\mathbf{F}_t| \leq \mu_s F_n\), then \(\mathbf{F}_t\) takes
+                that value.
+            </p>
+            <p>
+                In math: Define \(\mathbf{F}^*\) as the sum of all forces
+                EXCEPT for \(\mathbf{F}_t\). So \(\mathbf{F}_t^* = \mathbf{F}^* - 
+                (\mathbf{F}^* \cdot \mathbf{e}_n)\mathbf{e}_n\) is the projection
+                of \(\mathbf{F}^*\) onto the plane.
+            </p>
+
+            <div class="math-display">
+                \[
+                \sum{\mathbf{F}} = m\ddot{x} = m(\dot{\mathbf{v}}_\text{wall} + \dot{\mathbf{v}}_s)
+                \]
+                \[
+                \mathbf{F}_t + \mathbf{F}_t^* = m(\dot{\mathbf{v}}_\text{wall} + \dot{\mathbf{v}}_s) - 
+                (\mathbf{e}_n \cdot (\dot{\mathbf{v}}_\text{wall} + \dot{\mathbf{v}}_s)\mathbf{e}_n)
+                \]
+            </div>
+
+            <p>
+                Hence, the force needed for \(\dot{\mathbf{v}}_s = 0\) is:
+            </p>
+
+            <div class="math-display">
+                \[
+                \mathbf{F}_t = m[\dot{\mathbf{v}}_\text{wall} - (\mathbf{e}_n \cdot \dot{\mathbf{v}}_\text{wall})\mathbf{e}_n] - \mathbf{F}_t^* = \mathbf{F}_\text{trial}
+                \]
+            </div>
+            <p>
+                If \(|\mathbf{F}_\text{trial}| \leq \mu_s F_n\), accept it as correct.
+            </p>
+
+            <h3>
+                Finally we can say if \(|\mathbf{v}_s| = 0\) and \(|\mathbf{F}_\text{trial}| \leq \mu_s F_n\)
+                then \(\mathbf{F}_t = \mathbf{F}_\text{trial}\)
+            </h3>
+
+            <h2>TO BE CONTINUED</h2>
+
+
+            
+
+        </div>
+    </section>
+</main>
+</body>
+</html>
