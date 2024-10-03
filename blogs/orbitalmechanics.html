@@ -91,12 +91,15 @@
                 Using the work-energy theorem:
                 <div class="math-display">
                 \[
-                \frac{1}{2}mv^2 -B\frac{m}{|\mathbf{r}|} = constant
+                \begin{cases}
+                E(\text{right after launch}) = \frac{1}{2}mv^2 -B\frac{m}{|\mathbf{r}|} \\
+                E(\text{at escape}) = \frac{1}{2}m(0)^2 - -B\frac{m}{\infty} = 0
+                \end{cases}
                 \]
                 </div>
             </p>
             <p>
-                Setting the constant to 0 in this case signifies just enough energy to reach infinity, so let's do that and solve for \(v\):
+                Equating both E(right after launch) and E(at escape) allows us to solve for \(v_e\):
                 <div class="math-display">
                 \[
                 v_e = \sqrt{\frac{2B}{|\mathbf{r}|}} = 11,200 \frac{m}{s}
@@ -160,10 +163,16 @@
                 \[
                 \frac{1}{2}m((\frac{dr}{d\theta}\frac{H_0}{mr^2})^2 + (\frac{H_0}{mr})^2) -B\frac{m}{|\mathbf{r}|} = E_0
                 \]
+                \[
+                \frac{dr}{d\theta} = \frac{m^2r^4}{H_0^2}[\frac{2}{m}(E_0 + \frac{Bm}{r}) - \frac{H_0^2}{m^2r^2}]
+                \]
                 </div>
             </p>
+
+            <h2>3. Orbital Geometry</h2>
+
             <p>
-                Using the equations above we can find \(r(\theta)\), the Orbit Equation, which defines all the different paths two orbiting bodies can make:
+                Solveing the equations above using seperation of variables and we find \(r(\theta)\), the Orbit Equation, which defines all the different paths two orbiting bodies can make:
                 <div class="math-display">
                 \[
                 r(\theta) = \frac{P}{1 + e\cos(\theta - \phi)}
@@ -198,6 +207,115 @@
             <p>
                 When \( e > 1 \), the orbit is a hyperbola.
             </p>
+
+            <p>
+                Let's talk a little bit about how elliptical orbits work. As all orbits are elliptical.
+            </p>
+            <img src="../docs/elliptical-orbit-definitions.svg" alt="elliptical orbit" style="width:100%; max-width:600px;">
+
+            <p>
+                The pariapsis \(r_p\) and the apoapsis \(r_a\) correspond to the length between the focii and the end of an orbit.
+                There are two definitions for this length in elliptical orbits. We'll define them here.
+            </p>
+            <div class="math-display">
+                \[
+                r_p = \frac{P}{1 + e}  (\beta = 0)
+                \]
+                \[
+                r_p = \frac{P}{1 - e}  (\beta = \pi)
+                \]
+                \[
+                e = \frac{r_a - r_p}{r_a + r_p}
+                \]
+            </div>
+
+            <h2> Kepler's Laws </h2>
+
+            <p> Kepler wanted to find a relationship ship between the area of a slice in an elliptical orbit and the time it took to travese the outer edge of that slice.
+                He did this without Calculus. Although that is very impressive, we will be using Calculus in this blog because we are not as cool as Kepler.
+            </p>
+
+            <p>
+                First lets find an equation for the area of a slice from \(\mathbf{r}(t_1)\) and \(\mathbf{r}(t_2)\).
+            </p>
+            <img src="../docs/area_orbit.png" alt="r(t1) and r(t2)" style="width:100%; max-width:600px;">
+
+            <p> The area of the slice is given by the following:</p>
+            <div class="math-display">
+                \[
+                A = \int_{\theta_1}^{\theta_2} \frac{1}{2} \hat{r}(\theta)^2 \, d\theta
+                \]
+            </div>
+            <p style="text-align: center;">
+                And since \(\theta\) is a function of t:
+            </p>
+
+            <div class="math-display">
+                \[
+                A = \int_{t_1}^{t_2} \frac{1}{2} \hat{r}(\theta(t))^2 \frac{d\theta}{dt}\, dt
+                \]
+            </div>
+
+            <p style="text-align: center;">
+                Which simplifies to:
+            </p>
+            <div class="math-display"></div>
+                \[
+                A = \int_{t_1}^{t_2} \frac{1}{2m} H_0 dt
+                \]
+            </div>
+            <p style="text-align: center;">
+                And finally:
+            </p>
+            <div class="math-display"></div>
+                \[
+                A_\text{Slice} = \frac{H_0}{2m}(t_2 - t_1)
+                \]
+            </div>
+
+            <p> This is Kepler's second law which states; "Equal area, equal time"</p>
+
+            <h3>Orbital Period</h3>
+            <p> What is the area of a full orbit? or, area of Ecclipse?</p>
+
+            <div class="math-display">
+                \[
+                A = \int_{0}^{2\pi} \frac{1}{2} \hat{r}(\theta)^2 \, d\theta
+                \]
+                \[
+                A = \int_{0}^{2\pi} \frac{1}{2} [\frac{P}{1 + eCos(\theta - \phi)}]^2 \, d\theta
+                \]
+                \[
+                A_\text{Ecclipse} = \frac{\pi P^2}{(1-e)^{3/2}}
+                \]
+            </div>
+            
+            <p> Now if we set \(A_\text{Slice} = A_\text{Ecclipse}\) we can solve for the total time it takes to make a full orbit:</p>
+
+            <div class="math-display">
+                \[
+                \frac{H_0}{2m}(t_2 - t_1) = \frac{\pi P^2}{(1-e)^{3/2}}
+                \]
+            </div>
+            <p style="text-align: center;";>
+                Where
+            </p>
+            <div class="math-display">
+                \[
+                \frac{H}{m} = \sqrt{BP}
+                \]
+                \[
+                \delta t_\text{total} = \frac{2\pi P^{3/2}}{\sqrt{B}} (\frac{1}{(1-e)^{3/2}})
+                \]
+                \[
+                \delta t_\text{total} = \frac{2\pi}{\sqrt{B}}r_a^{3/2}
+                \]
+            </div>
+
+            <p> This is Kepler's Thrid Law</p>
+        
+            <h2> Vis - Viva Equation </h2>
+
             <h2>TO BE CONTINUED</h2>
         </div>
     </section>
