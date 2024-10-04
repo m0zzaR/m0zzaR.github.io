@@ -61,7 +61,7 @@
                 Where \(\mu_s > \mu_d\) 
             </p>
 
-            <h2> Complicated Friction </h2>
+            <h2> Rigorously Defined Friction </h2>
 
             <p> The definition above is incomplete because it does not determine \(\mathbf{F}_t\) when \(|\mathbf{v}_s| = 0\), nor does it give the direction of 
                 \(\mathbf{F}_t\) the instant sliding first begins.
@@ -71,7 +71,7 @@
                 Lets add two resonable assumtions to resolve this:
             </p>
 
-            <h3>1:</h3>
+            <h3>Assumption 1:</h3>
             <p>     
                 If \(\mathbf{v}_s = 0\) and the value of \(\mathbf{F}_t\)
                 that would make \(\dot{\mathbf{v}}_s = 0\) satisfies
@@ -112,11 +112,107 @@
                 Finally we can say if \(|\mathbf{v}_s| = 0\) and \(|\mathbf{F}_\text{trial}| \leq \mu_s F_n\)
                 then \(\mathbf{F}_t = \mathbf{F}_\text{trial}\)
             </h3>
+            <p>
+                
+            </p>
 
-            <h2>TO BE CONTINUED</h2>
+            <h3>Assumtion 2:</h3>
 
-
+            <p>
+                If \(\dot{\mathbf{v}}_s\) and the value of \(\mathbf{F}_t\) that
+                would make \(\dot{\mathbf{v}}_s = 0\) satisfies \(|\mathbf{F}_t| 
+                > \mu_s F_n\), then \(|\mathbf{F}_t| = \mu_s F_n\) and \(\mathbf{F}_t\)
+                points in the direction that minimizes \(\dot{\mathbf{v}_s\) starts sliding.
+            </p>
+            <p>
+                This is also equivalent to saying we pick \(\mathbf{F}_t\) by scaling down
+                \(\mathbf{F}_\text{trial}\) to a length of \(\mu_s F_n\)
+            </p>
+            <p>
+                In math: 
+            </p>
+            <h3>
+                If \(|\mathbf{v}_s| = 0\) and \(|\mathbf{F}_\text{trial}| > \mu_s F_n\),
+                then \(\mathbf{F}_t = \mu_s F_n \frac{\mathbf{F}_\text{trial}}{|\mathbf{F}_\text{trial}|}\).
+            </h3>
             
+
+            <h2> Friction in action</h2>
+            <img src="../docs/friction_in_action.png" alt="Friction Example" style="width:100%; max-width:600px;">
+
+            <p>
+                If the block starts at rest and the spring begins unloaded, how does the block move?
+            </p>
+
+            <h3>Step One:</h3>
+            
+            <p>Use cartesian with O at initial location of spring's back end.</p>
+            <div class="math-display">
+                
+                \begin{cases}
+                  \mathbf{r} = x\mathbf{e}_x  \\
+                  \mathbf{v} = \dot{x}\mathbf{e}_x  \\
+                  \mathbf{a} = \ddot{x}\mathbf{e}_x 
+                \end{cases}
+                
+            </div>
+
+            <h3>Step Two:</h3>
+            <p>Force Body Diagram</p>
+            <img src="../docs/freeBodyDiagram.png" alt="Free Body Diagram" style="width:100%; max-width:300px;">
+
+            <h3>Step Three</h3>
+            <p>Sum the forces using Newtons Second Law and then solve.</p>
+
+            <div class="math-display">
+
+                \[
+                \sum{F} = m\mathbf{a}: \mathbf{F}_s + \mathbf{F}_t + \mathbf{F}_n = mg\mathbf{e}_y = m\ddot{x}\mathbf{e}_x
+                \]
+
+                \[
+                \mathbf{F}_s = -k[|x\mathbf{e}_x - v_0\mathbf{e}_y| - l_0] \frac{x\mathbf{e}_x - v_0\mathbf{e}_y}{|x\mathbf{e}_x - v_0\mathbf{e}_y|}
+                \]
+
+            </div>
+            <p>This can be simplified to</p>
+
+            <div class="math-display">
+                \[
+                \mathbf{F}_s = -k[|\mathbf{r} - \mathbf{r}^A| - l_0] sign(x - v_0t)\mathbf{e}_x
+                \]
+            </div>
+
+            <p>Balancing both sides of the equation gives us:</p>
+
+            <div class="math-display">
+                \[
+                \mathbf{e}_y: F_n = mg = 0 
+                \]
+            </div>
+            <div class="math-display">
+                \[
+                \mathbf{e}_x: -k[|x=v_0t| - l_0]sign(x-v_0t) + F_t = m\ddot{x}
+                \]
+            </div>
+            <p> 
+                In this case, \(\mathbf{v}_\text{wall} = 0\) so \(\mathbf{v}_s = \dot{x}\mathbf{e}_x\)
+                and \(\mathbf{F}_\text{trial} -\mathbf{F}_t^* = -\mathbf{F}_s\)
+            </p>
+
+            <div class="math-display">
+            
+                \[
+                F_t = \begin{cases} 
+                -F_s & \text{if } \dot{x} = 0 \, \& \, |F_s| \leq \mu_s mg, \\
+                \mu_s mg \left( -F_s / |F_s| \right) & \text{if } \dot{x} = 0 \, \& \, |F_s| \geq \mu_s mg, \\
+                -\mu_d mg \, \text{sign}(\dot{x}) e_x & \text{if } \dot{x} \neq 0.
+                \end{cases}
+                \]
+            
+            </div>
+
+            <h3>TO BE CONTINUED</h3>
 
         </div>
     </section>
