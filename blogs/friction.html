@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Celestial Body Simulation</title>
-    <meta name="description" content="Celestial Body Simulation">
+    <title>A Rigorous Definition of Friction</title>
+    <meta name="description" content="A Rigorous Definition of Friction">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="../style.css">
@@ -34,19 +34,20 @@
             <h2> Simple Friction </h2>
 
             <p>
-                First lets start off with a definition of velocity: \(\mathbf{v}_s = \mathbf{v} - \mathbf{v}_\text{wall}\)
+                First, let's start with a definition of the relative (sliding) velocity between the object and the surface:
+                \(\mathbf{v}_s = \mathbf{v} - \mathbf{v}_\text{wall}\).
             </p>
 
             <p>
-                Where \(\mathbf{v}_s\) is the velocity of the whole system, \(\mathbf{v}\) is the velocity of a single object, and \(\mathbf{v}_\text{wall}\) 
-                is the velocity of the "wall" or floor the object rests on. Now we can define friction given different values of \(\mathbf{v}_s\).
+                Here, \(\mathbf{v}_s\) is the relative velocity between the object and the surface, \(\mathbf{v}\) is the velocity of the object, and \(\mathbf{v}_\text{wall}\) 
+                is the velocity of the surface (wall or floor). Now we can define friction based on different values of \(\mathbf{v}_s\).
             </p>
 
             <p style="text-align: center;">
-                If \( |\mathbf{v}_s| > 0 \), then \(\mathbf{F}_t = -\mu F_n \frac{\mathbf{v}_s}{|\mathbf{v}_s|}\)
+                If \( |\mathbf{v}_s| > 0 \), then \(\mathbf{F}_t = -\mu_d F_n \frac{\mathbf{v}_s}{|\mathbf{v}_s|}\)
             </p>
             <p style="text-align: center;">
-                If \( |\mathbf{v}_s| = 0 \), then \(|\mathbf{F}_t|\ \leq F_n \)
+                If \( |\mathbf{v}_s| = 0 \), then \(|\mathbf{F}_t|\ \leq \mu_s F_n \)
             </p>
 
             <p> Often we model \(\mu\) to be a function of \(|\mathbf{v}_s|\)</p>
@@ -79,10 +80,19 @@
                 that value.
             </p>
             <p>
-                In math: Define \(\mathbf{F}^*\) as the sum of all forces
-                EXCEPT for \(\mathbf{F}_t\). So \(\mathbf{F}_t^* = \mathbf{F}^* - 
-                (\mathbf{F}^* \cdot \mathbf{e}_n)\mathbf{e}_n\) is the projection
-                of \(\mathbf{F}^*\) onto the plane.
+                In mathematical terms, let us define \(\mathbf{F}^*\) as the sum of all external forces
+                acting on the body, excluding the friction force \(\mathbf{F}_t\). The tangential component of \(\mathbf{F}^*\), denoted as \(\mathbf{F}_t^*\), is given by:
+            </p>
+            <div class="math-display">
+                \[
+                \mathbf{F}_t^* = \mathbf{F}^* - (\mathbf{F}^* \cdot \mathbf{e}_n)\mathbf{e}_n,
+                \]
+            </div>
+            <p>
+                where \(\mathbf{e}_n\) is the unit normal vector perpendicular to the plane.
+            </p>
+            <p>
+                Applying Newton's second law to the object, we have:
             </p>
 
             <div class="math-display">
@@ -119,23 +129,16 @@
             <h3>Assumtion 2:</h3>
 
             <p>
-                If \(\dot{\mathbf{v}}_s\) and the value of \(\mathbf{F}_t\) that
-                would make \(\dot{\mathbf{v}}_s = 0\) satisfies \(|\mathbf{F}_t| 
-                > \mu_s F_n\), then \(|\mathbf{F}_t| = \mu_s F_n\) and \(\mathbf{F}_t\)
-                points in the direction that minimizes \(\dot{\mathbf{v}_s\) starts sliding.
+                If \(\mathbf{v}_s = 0\) and \( |\mathbf{F}_{\text{trial}}| > \mu_s F_n \), then static friction cannot prevent motion. In this case, the friction force reaches its maximum value in the direction opposing motion:
             </p>
+            <div class="math-display">
+                \[
+                \mathbf{F}_t = - \mu_s F_n \dfrac{\mathbf{F}_{\text{trial}}}{|\mathbf{F}_{\text{trial}}|}.
+                \]
+            </div>
             <p>
-                This is also equivalent to saying we pick \(\mathbf{F}_t\) by scaling down
-                \(\mathbf{F}_\text{trial}\) to a length of \(\mu_s F_n\)
+                This is equivalent to scaling down \(\mathbf{F}_{\text{trial}}\) to a magnitude of \(\mu_s F_n\).
             </p>
-            <p>
-                In math: 
-            </p>
-            <h3>
-                If \(|\mathbf{v}_s| = 0\) and \(|\mathbf{F}_\text{trial}| > \mu_s F_n\),
-                then \(\mathbf{F}_t = \mu_s F_n \frac{\mathbf{F}_\text{trial}}{|\mathbf{F}_\text{trial}|}\).
-            </h3>
-            
 
             <h2> Friction in action</h2>
             <img src="../docs/friction_in_action.png" alt="Friction Example" style="width:100%; max-width:600px;">
@@ -146,7 +149,7 @@
 
             <h3>Step One:</h3>
             
-            <p>Use cartesian with O at initial location of spring's back end.</p>
+            <p>Use Cartesian coordinates with O at initial location of spring's back end.</p>
             <div class="math-display">
                 
                 \begin{cases}
@@ -167,7 +170,7 @@
             <div class="math-display">
 
                 \[
-                \sum{F} = m\mathbf{a}: \mathbf{F}_s + \mathbf{F}_t + \mathbf{F}_n = mg\mathbf{e}_y = m\ddot{x}\mathbf{e}_x
+                \sum{F} = m\mathbf{a}: \mathbf{F}_s + \mathbf{F}_t + \mathbf{F}_n - mg\mathbf{e}_y = m\ddot{x}\mathbf{e}_x
                 \]
 
                 \[
@@ -182,6 +185,9 @@
                 \mathbf{F}_s = -k[|\mathbf{r} - \mathbf{r}^A| - l_0] sign(x - v_0t)\mathbf{e}_x
                 \]
             </div>
+            <p>
+                Where \( \mathbf{r}^A \) is the position of the fixed end of the spring, and \( l_0 \) is the natural (unstretched) length of the spring.
+            </p>
 
             <p>Balancing both sides of the equation gives us:</p>
 
@@ -192,7 +198,7 @@
             </div>
             <div class="math-display">
                 \[
-                \mathbf{e}_x: -k[|x=v_0t| - l_0]sign(x-v_0t) + F_t = m\ddot{x}
+                \mathbf{e}_x: -k[|x-v_0t| - l_0]sign(x-v_0t) + F_t = m\ddot{x}
                 \]
             </div>
             <p> 
@@ -205,14 +211,50 @@
                 \[
                 F_t = \begin{cases} 
                 -F_s & \text{if } \dot{x} = 0 \, \& \, |F_s| \leq \mu_s mg, \\
-                \mu_s mg \left( -F_s / |F_s| \right) & \text{if } \dot{x} = 0 \, \& \, |F_s| \geq \mu_s mg, \\
-                -\mu_d mg \, \text{sign}(\dot{x}) e_x & \text{if } \dot{x} \neq 0.
+                \mu_s mg \left( \text{sign}(F_s)  \right) & \text{if } \dot{x} = 0 \, \& \, |F_s| \geq \mu_s mg, \\
+                -\mu_d mg \, \text{sign}(\dot{x}) & \text{if } \dot{x} \neq 0.
                 \end{cases}
                 \]
             
             </div>
 
-            <h3>TO BE CONTINUED</h3>
+            <h2> Quick Summary</h2>
+
+            <p>
+                Everything that I have talked about so far is quite convoluted and hard
+                to wrap your brain around so here I am going to attempt to summarize
+                everything to make it easier to understand.
+            </p>
+
+            <p>
+                First we define \(\mathbf{F}^*\) as the sum of all forces
+                except for \(\mathbf{F}_t\) on a body.
+            </p>
+
+            <p>
+                \(\mathbf{F}_t^* = \mathbf{F}^* - (\mathbf{F}^* \cdot \mathbf{e}_n)\mathbf{e}_n\) is the part
+                of \(\mathbf{F}^*\) tangent to the plane.
+            </p>
+
+            <p>
+                \(\mathbf{F}_\text{trial} = m[\dot{\mathbf{v}}_\text{wall} - (\mathbf{e}_n \cdot \dot{\mathbf{v}}_\text{wall})\mathbf{e}_n] - \mathbf{F}_t) \) is the 
+                force the friction would have to supply to keep the object from sliding.
+            </p>
+
+            <p>
+                Finally, the force of friction can thus be expressed by:
+            </p>
+            <div class="math-display">
+            
+                \[
+                F_t = \begin{cases} 
+                -\mathbf{F}_\text{trial} & \text{if } \dot{x} = 0 \, \& \, |F_s| \leq \mu_s mg, \\
+                \mu_s F_n \left( \frac{-F_s}{|F_s|} \right) & \text{if } \dot{x} = 0 \, \& \, |F_s| \geq \mu_s mg, \\
+                -\mu_d F_n \, (\frac{\mathbf{v}_s}{|\mathbf{v}_s|}) & \text{if } \dot{x} \neq 0.
+                \end{cases}
+                \]
+            
+            </div>
 
         </div>
     </section>
