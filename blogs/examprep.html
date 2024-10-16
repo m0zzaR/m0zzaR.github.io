@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamics Cheat Sheet</title>
+    <meta name="description" content="Dynamics Cheat Sheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/mathjax-script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<main>
+    <!-- Navigation bar inside the main content box -->
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../blog.html">Engineering Blog</a></li>
+            <li><a href="../docs/resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div>
+            <h1>
+                A Review of Dynamics Exam 1 Material
+            </h1>
+            <p>As part of my studies in mechanical engineering, I've compiled this cheat sheet on dynamics to help me prepare for my upcoming exam. It covers key concepts and equations from weeks 2 to 6 of the course.</p>
+
+            <h2>Week 2</h2>
+
+            <h3>Math Review</h3>
+
+            <strong>Dot Product</strong><br>
+            <p>For \( \vec{A} \cdot \vec{B} = 0 \), \( \vec{A} \perp \vec{B} \).</p>
+
+            <strong>Cross Product</strong><br>
+            <p>For \( \vec{A} \times \vec{B} = 0 \), \( \vec{A} \parallel \vec{B} \).</p>
+
+            <strong>Chain Rule</strong>:
+            <div class="math-display">
+            \[
+            \frac{d}{dx} [f(g(x))] = \frac{df(g)}{dg} \frac{dg(x)}{dx}
+            \]
+            </div>
+
+            <strong>Product Rule</strong>:
+            <div class="math-display">
+            \[
+            \frac{d}{dx} [f(x)g(x)] = f(x) \frac{dg(x)}{dx} + \frac{df(x)}{dx} g(x)
+            \]
+            </div>
+
+            <strong>Trigonometry:</strong>
+            <ul>
+                <li><strong>Sine Rule:</strong>
+                <div class="math-display">
+                \[
+                \frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}
+                \]
+                </div>
+                </li>
+                <li><strong>Cosine Rule:</strong>
+                <div class="math-display">
+                \[
+                c^2 = a^2 + b^2 - 2ab\cos(C)
+                \]
+                </div>
+                </li>
+            </ul>
+
+            <h2>Week 3</h2>
+
+            <h3>Coordinate Systems</h3>
+
+            <strong>Cartesian Coordinates</strong>
+            <div class="math-display">
+            \[
+            \vec{r} = x(t) \hat{e}_x + y(t) \hat{e}_y + z(t) \hat{e}_z
+            \]
+            \[
+            \vec{v} = \dot{\vec{r}}(t)
+            \]
+            \[
+            \vec{a} = \ddot{\vec{r}}(t)
+            \]
+            </div>
+
+            <strong>Cylindrical Coordinates</strong>
+            <div class="math-display">
+            \[
+            \vec{r} = r \hat{e}_r + z \hat{e}_z
+            \]
+            \[
+            \vec{v} = \dot{r} \hat{e}_r + r\dot{\theta} \hat{e}_{\theta} + \dot{z} \hat{e}_z
+            \]
+            \[
+            \vec{a} = (\ddot{r} - r\dot{\theta}^2) \hat{e}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta}) \hat{e}_{\theta} + \ddot{z} \hat{e}_z
+            \]
+            </div>
+
+            <strong>Cylindrical Basis</strong>
+            <div class="math-display">
+            \[
+            \hat{e}_r = \cos\theta \hat{e}_x + \sin\theta \hat{e}_y, \quad \hat{e}_{\theta} = -\sin\theta \hat{e}_x + \cos\theta \hat{e}_y
+            \]
+            \[
+            \dot{\hat{e}}_r = \dot{\theta} \hat{e}_{\theta}, \quad \dot{\hat{e}}_{\theta} = -\dot{\theta} \hat{e}_r
+            \]
+            \[
+            \hat{e}_z = 0, \quad x = r \cos\theta, \quad y = r \sin\theta
+            \]
+            </div>
+
+            <h3>Normal-Tangent Coordinate System</h3>
+
+            <strong>Radius of Curvature</strong>:
+            <div class="math-display">
+            \[
+            \kappa = \frac{1}{\rho} = \frac{\left| \frac{d^2 y}{dx^2} \right|}{\left(1 + \left( \frac{dy}{dx} \right)^2 \right)^{3/2}} \approx \frac{d^2 y}{dx^2} \quad
+            \]
+            </div>
+
+            <strong>Infinitesimal Path Traveled</strong>:
+            <div class="math-display">
+            \[
+            ds = \rho d\beta
+            \]
+            </div>
+
+            <strong>Speed</strong>:
+            <div class="math-display">
+            \[
+            v = \frac{ds}{dt} = \rho \frac{d\beta}{dt} = \rho \dot{\beta}
+            \]
+            </div>
+
+            <strong>Velocity</strong>:
+            <div class="math-display">
+            \[
+            \vec{v} = \rho \dot{\beta} \hat{e}_t
+            \]
+            </div>
+
+            <strong>Acceleration</strong>:
+            <div class="math-display">
+            \[
+            \vec{a} = \dot{v} \hat{e}_t + \frac{v^2}{\rho} \hat{e}_n
+            \]
+            </div>
+
+            <h2>Week 4</h2>
+
+            <h3>Free Vibration of Particles: Undamped</h3>
+            <strong>Equation of Motion</strong>:
+            <div class="math-display">
+            \[
+            m\ddot{x} + kx = 0
+            \]
+            </div>
+            <strong>Simple Harmonic Motion Equation</strong>:
+            <div class="math-display">
+            \[
+            \ddot{x} + \omega_n^2 x = 0 ,\quad \omega_n = \sqrt{\frac{k}{m}}
+            \]
+            </div>
+            <p>With solution of the form:</p>
+            <div class="math-display">
+            \[
+            x = A \cos(\omega_n t) + B \sin(\omega_n t) \quad \text{or} \quad x = C \sin(\omega_n t + \psi)
+            \]
+            </div>
+            <strong>Natural Frequency</strong>:
+            <div class="math-display">
+            \[
+            f_n = \frac{1}{\tau} =  \frac{\omega_n}{2\pi}
+            \]
+            </div>
+            <p>Units: \(1\, \text{Hz} = 1\, \text{cycle/second}\)</p>
+
+            <h3>Conservation of Angular Momentum</h3>
+            <strong>Angular Momentum</strong>:
+            <div class="math-display">
+            \[
+            r^2\dot{\theta} = h = \text{constant}
+            \]
+            </div>
+            <strong>Acceleration Components</strong>:
+            <div class="math-display">
+            \[
+            a_r = \ddot{r} - r\dot{\theta}^2, \quad a_{\theta} = r\ddot{\theta} + 2\dot{r}\dot{\theta}
+            \]
+            \[
+            a_{\theta} = \frac{1}{r}\frac{d}{dt}(r^2\dot{\theta})
+            \]
+            </div>
+            <h3>Friction: Static and Kinetic</h3>
+            <strong>Static Friction</strong>:
+            <div class="math-display">
+            \[
+            |F_{\text{f}}| \leq \mu_s |N|
+            \]
+            </div>
+            <p>If \( |F_{\text{trial}}| > \mu_s |N| \), sliding occurs.</p>
+
+            <strong>Kinetic Friction</strong>:
+            <div class="math-display">
+            \[
+            F_{\text{f}} = -\mu_k |N| \frac{\vec{v}_{\text{rel}}}{||\vec{v}_{\text{rel}}||}
+            \]
+            </div>
+
+            <strong>Detailed Friction Model</strong>:
+
+            <ul>
+                <li>\( \vec{F}^* \): Sum of all forces except tangential friction \( F_t \).</li>
+                <li>Tangential component:
+                <div class="math-display">
+                \[
+                F_t^* = \vec{F}^* - (\vec{F}^* \cdot \hat{e}_n)\hat{e}_n
+                \]
+                </div>
+                </li>
+                <li>Trial friction force:
+                <div class="math-display">
+                \[
+                F_{\text{trial}} = m \left( \dot{\vec{v}}_{\text{wall}} - (\hat{e}_n \cdot \dot{\vec{v}}_{\text{wall}}) \hat{e}_n \right) = F_t^*
+                \]
+                </div>
+                </li>
+                <li>Friction force \( F_t \):
+                <div class="math-display">
+                \[
+                F_t = \begin{cases}
+                - F_{\text{trial}}, & v_s = 0, \ |F_{\text{trial}}| \leq \mu_s |N| \\
+                - \mu_s |N| \dfrac{F_{\text{trial}}}{|F_{\text{trial}}|}, & v_s = 0, \ |F_{\text{trial}}| > \mu_s |N| \\
+                - \mu_k |N| \dfrac{\vec{v}_s}{||\vec{v}_s||}, & v_s \ne 0
+                \end{cases}
+                \]
+                </div>
+                </li>
+            </ul>
+
+            <h2>Week 5</h2>
+
+            <h3>Relative Motion in Non-Rotating Frames</h3>
+
+            <div class="math-display">
+            \[
+            \vec{r}_A = \vec{r}_B + \vec{r}_{A/B}
+            \]
+            \[
+            \vec{v}_A = \vec{v}_B + \vec{v}_{A/B}
+            \]
+            \[
+            \vec{a}_A = \vec{a}_B + \vec{a}_{A/B}
+            \]
+            </div>
+
+            <strong>Cartesian Motion</strong>:
+            <div class="math-display">
+            \[
+            \vec{a}_{A/B} = (\vec{a}_{A/B})_x \hat{i} + (\vec{a}_{A/B})_y \hat{j}
+            \]
+            </div>
+
+            <strong>Normal-Tangential</strong>:
+            <div class="math-display">
+            \[
+            \vec{a}_{A/B} = (\vec{a}_{A/B})_t \hat{e}_t + (\vec{a}_{A/B})_n \hat{e}_n
+            \]
+            </div>
+            <p>Where:</p>
+            <div class="math-display">
+            \[
+            (\vec{a}_{A/B})_t = \alpha \times \vec{r}, \quad (\vec{a}_{A/B})_n = \omega \times (\omega \times \vec{r})
+            \]
+            </div>
+
+            <h3>Relative Motion in Rotating Frames</h3>
+
+            <p>For velocity:</p>
+            <div class="math-display">
+            \[
+            \vec{v}_A = \vec{v}_B + \omega \times \vec{r}_{\text{rel}} + \vec{v}_{\text{rel}}
+            \]
+            </div>
+
+            <p>For acceleration:</p>
+            <div class="math-display">
+            \[
+            \vec{a}_A = \vec{a}_B + \dot{\omega} \times \vec{r}_{\text{rel}} + \omega \times (\omega \times \vec{r}_{\text{rel}}) + 2\omega \times \vec{v}_{\text{rel}} + \vec{a}_{\text{rel}}
+            \]
+            </div>
+
+            <p><strong>Euler:</strong> \( \dot{\omega} \times \vec{r}_{\text{rel}} \)</p>
+            <p><strong>Centrifugal:</strong> \( \omega \times (\omega \times \vec{r}_{\text{rel}}) \)</p>
+            <p><strong>Coriolis:</strong> \( 2\omega \times \vec{v}_{\text{rel}} \)</p>
+
+            <h3>Work, Energy, and Power</h3>
+
+            <strong>Power</strong>:
+            <div class="math-display">
+            \[
+            P = \vec{F} \cdot \vec{v} = F v \cos \theta
+            \]
+            </div>
+            <p>Power is the rate at which work is done or energy is transferred.</p>
+
+            <strong>Work</strong>:
+            <div class="math-display">
+            \[
+            W = \int_{s_A}^{s_B} \vec{F} \cdot d\vec{s} = \int_{t_A}^{t_B} \vec{F} \cdot \vec{v} \, dt
+            \]
+            </div>
+            <p>Work is the integral of the force along the displacement path.</p>
+            <p>For constant force and straight-line motion:</p>
+            <div class="math-display">
+            \[
+            W = F d \cos \theta
+            \]
+            </div>
+            <p>where \( d \) is the displacement and \( \theta \) is the angle between \( \vec{F} \) and \( d\vec{s} \).</p>
+
+            <strong>Work-Energy Principle</strong>:
+            <div class="math-display">
+            \[
+            W_{\text{total}} = \Delta K = K_B - K_A = \frac{1}{2} m v_B^2 - \frac{1}{2} m v_A^2
+            \]
+            </div>
+            <p>The net work done on a particle equals the change in its kinetic energy.</p>
+
+            <strong>Kinetic Energy</strong>:
+            <div class="math-display">
+            \[
+            K = \frac{1}{2} m v^2
+            \]
+            </div>
+
+            <strong>Potential Energy</strong>:
+            <ul>
+                <li><strong>Gravitational Potential Energy</strong>:
+                <div class="math-display">
+                \[
+                U_g = m g h
+                \]
+                </div>
+                \( h \) is the height above a reference level.
+                </li>
+                <li><strong>Elastic Potential Energy</strong>:
+                <div class="math-display">
+                \[
+                U_e = \frac{1}{2} k x^2
+                \]
+                </div>
+                \( x \) is the displacement from the spring's equilibrium position.
+                </li>
+            </ul>
+
+            <strong>Conservative Forces</strong>:
+            <div class="math-display">
+            \[
+            W_{\text{cons}} = -\Delta U
+            \]
+            </div>
+
+            <strong>Non-Conservative Forces</strong>:
+            <div class="math-display">
+            \[
+            W_{\text{nc}} = \Delta E_{\text{mechanical}} = (K_B + U_B) - (K_A + U_A)
+            \]
+            </div>
+
+            <strong>Mechanical Energy Conservation</strong>:
+            <p>In the absence of non-conservative forces:</p>
+            <div class="math-display">
+            \[
+            E_{\text{mechanical}} = K + U = \text{constant}
+            \]
+            \[
+            K_A + U_A = K_B + U_B
+            \]
+            </div>
+
+            <strong>Total Mechanical Energy</strong>:
+            <div class="math-display">
+            \[
+            E_{\text{mech}} = K + U_g + U_e
+            \]
+            </div>
+
+            <strong>Work Done by Variable Forces</strong>:
+            <p>For forces that vary with position:</p>
+            <div class="math-display">
+            \[
+            W = \int_{x_A}^{x_B} F(x) \, dx
+            \]
+            </div>
+
+            <strong>Relation Between Work and Potential Energy</strong>:
+            <p>For a conservative force \( \vec{F} = -\nabla U \):</p>
+            <div class="math-display">
+            \[
+            W = -\Delta U
+            \]
+            </div>
+
+            <h2>Week 6</h2>
+
+            <h3>Angular Momentum</h3>
+
+            <strong>Linear Momentum</strong>:
+            <div class="math-display">
+            \[
+            \vec{G} = m\vec{v}
+            \]
+            </div>
+            <p>Linear momentum is the product of mass and velocity.</p>
+
+            <strong>Angular Momentum</strong>:
+            <div class="math-display">
+            \[
+            \vec{H}_O = \vec{r} \times m\vec{v}
+            \]
+            </div>
+            <p>In plane polar coordinates, angular momentum is expressed as:</p>
+            <div class="math-display">
+            \[
+            \vec{H}_O = m r \vec{e}_r \times (\dot{r}\vec{e}_r + r\dot{\theta}\vec{e}_{\theta}) = m r^2 \dot{\theta} \vec{e}_z = H_O \vec{e}_z
+            \]
+            </div>
+
+            <strong>Time Derivative of Angular Momentum</strong>:
+            <div class="math-display">
+            \[
+            \dot{\vec{H}}_O = m\vec{v} \times \vec{v} + \vec{r} \times m\vec{a} = \vec{r} \times m\vec{a}
+            \]
+            </div>
+
+            <strong>Conservation of Angular Momentum</strong>:
+            <p>If \( \vec{r} \times m\vec{a} = 0 \) in the \( \hat{e}_z \) direction, angular momentum is conserved and:</p>
+            <div class="math-display">
+            \[
+            \frac{d\vec{H}_O}{dt} = 0
+            \]
+            </div>
+
+            <h3>Orbital Motion</h3>
+
+            <strong>Acceleration in Polar Coordinates</strong>:
+            <div class="math-display">
+            \[
+            \vec{a} = (\ddot{r} - r\dot{\theta}^2)\hat{e}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\hat{e}_{\theta}
+            \]
+            </div>
+
+            <strong>Equations of Motion</strong>:
+            <div class="math-display">
+            \[
+            m(\ddot{r} - r\dot{\theta}^2) = -\frac{G M m}{r^2}
+            \]
+            \[
+            m(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = 0
+            \]
+            </div>
+
+            <strong>Conservation of Angular Momentum</strong>:
+            <div class="math-display">
+            \[
+            h = r^2 \dot{\theta} = \text{constant}
+            \]
+            </div>
+
+            <strong>Energy Equation</strong>:
+            <div class="math-display">
+            \[
+            E = \frac{1}{2} m (\dot{r}^2 + r^2 \dot{\theta}^2) - \frac{G M m}{r} = \text{constant}
+            \]
+            </div>
+
+            <h3>Orbital Parameters</h3>
+
+            <strong>Velocity Components</strong>:
+            <div class="math-display">
+            \[
+            v_r = \dot{r}, \quad v_{\theta} = r \dot{\theta}
+            \]
+            \[
+            v = \sqrt{v_r^2 + v_{\theta}^2}
+            \]
+            </div>
+
+            <strong>Specific Mechanical Energy</strong>:
+            <div class="math-display">
+            \[
+            \epsilon = \frac{v^2}{2} - \frac{G M}{r}
+            \]
+            </div>
+
+            <strong>Orbital Equation (Conic Sections)</strong>:
+            <div class="math-display">
+            \[
+            r(\theta) = \frac{h^2 / (G M m^2)}{1 + e \cos(\theta - \theta_0)}
+            \]
+            </div>
+            <p>where \( e \) is the eccentricity.</p>
+
+            <strong>Eccentricity</strong>:
+            <div class="math-display">
+            \[
+            e = \sqrt{1 + \frac{2 E h^2}{G^2 M^2 m^3}}
+            \]
+            </div>
+
+            <strong>Periapsis and Apoapsis Distances</strong>:
+            <div class="math-display">
+            \[
+            r_{\text{min}} = \frac{h^2}{G M m^2 (1 + e)}
+            \]
+            \[
+            r_{\text{max}} = \frac{h^2}{G M m^2 (1 - e)}
+            \]
+            </div>
+
+            <strong>Types of Orbits</strong>:
+            <ul>
+                <li>Ellipse (\( e < 1 \))</li>
+                <li>Parabola (\( e = 1 \))</li>
+                <li>Hyperbola (\( e > 1 \))</li>
+            </ul>
+
+            <h3>Additional Key Formulas</h3>
+
+            <strong>Relationship Between Energy and Semi-Major Axis</strong>:
+            <div class="math-display">
+            \[
+            E = -\frac{G M m}{2a}
+            \]
+            \[
+            v^2 = G M \left( \frac{2}{r} - \frac{1}{a} \right)
+            \]
+            </div>
+
+            <strong>Angular Momentum per Unit Mass</strong>:
+            <div class="math-display">
+            \[
+            h = r v_{\theta} = \sqrt{G M a (1 - e^2)}
+            \]
+            </div>
+
+            <strong>Velocity at Periapsis and Apoapsis</strong>:
+            <div class="math-display">
+            \[
+            v_{\text{min}} = \sqrt{\frac{G M (1 - e)}{a (1 + e)}}
+            \]
+            \[
+            v_{\text{max}} = \sqrt{\frac{G M (1 + e)}{a (1 - e)}}
+            \]
+            </div>
+
+            <strong>Orbital Period (Elliptical Orbits)</strong>:
+            <div class="math-display">
+            \[
+            T = 2\pi \sqrt{\frac{a^3}{G M}}
+            \]
+            </div>
+
+            <strong>Velocity Components at Any Point</strong>:
+            <div class="math-display">
+            \[
+            v_r = \frac{G M e \sin \theta}{h}
+            \]
+            \[
+            v_{\theta} = \frac{G M (1 + e \cos \theta)}{h}
+            \]
+            </div>
+
+            <h3>Power-Law Force</h3>
+
+            <strong>Normal Form (Force)</strong>:
+            <div class="math-display">
+            \[
+            \vec{F}(r) = -k (r - r_0)^{n} \hat{e}_r
+            \]
+            </div>
+
+            <strong>Potential Energy Form</strong>:
+            <ul>
+                <li>When \( n \ne -1 \):
+                <div class="math-display">
+                \[
+                U(r) = \frac{k}{n + 1} (r - r_0)^{n + 1} + C
+                \]
+                </div>
+                </li>
+                <li>When \( n = -1 \):
+                <div class="math-display">
+                \[
+                U(r) = k \ln (r - r_0) + C
+                \]
+                </div>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+</main>
+</body>
+</html>
