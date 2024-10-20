@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>An Interactive Game: Celestial Body Simulation (Part 3)</title>
+    <meta name="description" content="An Interactive Celestial Body Simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../style.css">
+    <!-- MathJax Scripts -->
+    <script src="../scripts/mathjax-script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<main>
+    <!-- Navigation bar inside the main content box -->
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../blog.html">Engineering Blog</a></li>
+            <li><a href="../docs/resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div>
+            <h1>An Interactive Game: Celestial Body Simulation (Part 3)</h1>
+            <p>
+                Welcome back to the third installment of my celestial body simulation project! This time, I've transformed the simulation into an interactive game that lets you play with the cosmos right in your browser. Let's dive into how I built it, the challenges I faced, and the math that makes it all possible.
+            </p>
+
+            <h2>1. Bringing the Simulation to Life</h2>
+            <p>
+                My initial simulations were built using Python and Matplotlib, which were great for plotting orbits and visualizing gravitational interactions. However, I wanted to make the simulation more interactive and accessible. So, I decided to bring it to the web using HTML5 Canvas and JavaScript.
+            </p>
+            <p>
+                The first step was setting up the basic HTML structure and creating a canvas element where the simulation would be drawn:
+            </p>
+            <pre><code class="language-html">
+&lt;canvas id="simulation-canvas"&gt;&lt;/canvas&gt;
+            </code></pre>
+            <p>
+                Then, I initialized the canvas in JavaScript and set up the animation loop:
+            </p>
+            <pre><code class="language-javascript">
+// Initialize canvas
+const canvas = document.getElementById('simulation-canvas');
+const ctx = canvas.getContext('2d');
+
+// Animation loop
+function animate() {
+    updateBodies();
+    drawBodies();
+    requestAnimationFrame(animate);
+}
+
+animate();
+            </code></pre>
+
+            <h2>2. Adding Interactivity with JavaScript</h2>
+            <p>
+                To make the simulation interactive, I created a user interface where you can add celestial bodies, set their initial positions and velocities, and even click on the canvas to place them. The interface includes input fields and buttons, all tied together with event listeners in JavaScript:
+            </p>
+            <pre><code class="language-javascript">
+// Event listener for adding bodies
+document.getElementById('add-body-button').addEventListener('click', addBody);
+
+// Function to add a new body
+function addBody() {
+    // Code to create input fields and update the simulation
+}
+            </code></pre>
+            <p>
+                Clicking on the canvas updates the position of the selected body, making it intuitive and fun to set up initial conditions.
+
+            <h2>3. The Math Behind the Simulation</h2>
+            <p>
+                At the heart of the simulation is Newton's Law of Universal Gravitation, which calculates the gravitational force between two bodies:
+            </p>
+            <div class="math-display">
+                \[ \vec{F} = G \frac{m_1 m_2}{r^2} \hat{r} \]
+            </div>
+            <p>
+                Where:
+            </p>
+            <ul>
+                <li>\( \vec{F} \) is the gravitational force vector.</li>
+                <li>\( G \) is the gravitational constant.</li>
+                <li>\( m_1 \) and \( m_2 \) are the masses of the two bodies.</li>
+                <li>\( r \) is the distance between the centers of the two bodies.</li>
+                <li>\( \hat{r} \) is the unit vector pointing from one body to the other.</li>
+            </ul>
+            <p>
+                The acceleration of each body is then calculated using Newton's Second Law:
+            </p>
+            <div class="math-display">
+                \[ \vec{a} = \frac{\vec{F}}{m} \]
+            </div>
+            <p>
+                With the acceleration known, I updated the velocities and positions using simple kinematic equations:
+            </p>
+            <div class="math-display">
+                \[ \vec{v}_{\text{new}} = \vec{v}_{\text{old}} + \vec{a} \Delta t \]
+            </div>
+            <div class="math-display">
+                \[ \vec{r}_{\text{new}} = \vec{r}_{\text{old}} + \vec{v}_{\text{new}} \Delta t \]
+            </div>
+            <p>
+                Here's a snippet of the code handling the physics calculations:
+            </p>
+            <pre><code class="language-javascript">
+// Constants
+const G = 1; // Gravitational constant
+const timeStep = 0.01; // Simulation time step
+
+// Function to update bodies
+function updateBodies() {
+    bodies.forEach(body => {
+        // Reset acceleration
+        body.acceleration = { x: 0, y: 0 };
+
+        // Calculate net force on the body
+        bodies.forEach(otherBody => {
+            if (body !== otherBody) {
+                const dx = otherBody.position.x - body.position.x;
+                const dy = otherBody.position.y - body.position.y;
+                const distance = Math.sqrt(dx * dx + dy * dy) + 1e-6;
+                const force = (G * body.mass * otherBody.mass) / (distance * distance);
+
+                // Update acceleration
+                body.acceleration.x += (force * dx) / (distance * body.mass);
+                body.acceleration.y += (force * dy) / (distance * body.mass);
+            }
+        });
+
+        // Update velocity and position
+        body.velocity.x += body.acceleration.x * timeStep;
+        body.velocity.y += body.acceleration.y * timeStep;
+        body.position.x += body.velocity.x * timeStep;
+        body.position.y += body.velocity.y * timeStep;
+    });
+}
+            </code></pre>
+
+            <h2>4. Handling Collisions and Boundaries</h2>
+            <p>
+                To make the simulation more realistic (and entertaining), I added options for edge collisions and body collisions. For edge collisions, when a body hits the edge of the simulation canvas, it bounces back by reversing its velocity component:
+            </p>
+            <pre><code class="language-javascript">
+// Handle edge collisions
+if (body.position.x &lt; 0 || body.position.x &gt; canvas.width) {
+    body.velocity.x *= -1;
+}
+if (body.position.y &lt; 0 || body.position.y &gt; canvas.height) {
+    body.velocity.y *= -1;
+}
+            </code></pre>
+            <p>
+                For body collisions, I implemented elastic collision equations to update the velocities of colliding bodies. The math involves conserving momentum and energy, and the implementation looks like this:
+            </p>
+            <pre><code class="language-javascript">
+// Handle body collisions
+function handleBodyCollision(bodyA, bodyB) {
+    const dx = bodyB.position.x - bodyA.position.x;
+    const dy = bodyB.position.y - bodyA.position.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance &lt; bodyA.radius + bodyB.radius) {
+        // Swap velocities for simplicity (elastic collision)
+        [bodyA.velocity, bodyB.velocity] = [bodyB.velocity, bodyA.velocity];
+    }
+}
+            </code></pre>
+
+            <h2>5. Designing the User Interface</h2>
+            <p>
+                The user interface was styled to be clean and modern, matching the aesthetic of my website. I used CSS Flexbox and Grid to layout the controls and the canvas neatly. Here's an excerpt of the CSS:
+            </p>
+            <pre><code class="language-css">
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Canvas */
+#simulation-canvas {
+    background-color: #000;
+    border: 2px solid #45A29E;
+    border-radius: 8px;
+    width: 800px;
+    height: 600px;
+}
+
+/* Controls */
+#controls {
+    background-color: #1F2833;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+            </code></pre>
+            <p>
+                The end result is an interactive simulation where you can add multiple bodies, set their properties, and watch as they orbit, collide, and dance across the screen!
+
+            <h2>6. Try It Yourself!</h2>
+            <p>
+                I've hosted the simulation online so you can play with it yourself. Click the link below to explore the cosmos:
+            </p>
+            <p style="text-align: center;">
+                <a href="../games/index2.html" style="font-size: 1.2em;">🚀 Launch the Celestial Simulation 🚀</a>
+            </p>
+
+            <h2>In Conclusion...</h2>
+            <p>
+                Building this interactive simulation was a rewarding experience that combined physics, programming, and user interface design. It was exciting to see the math come to life and to create something that others can enjoy and learn from. Stay tuned for future updates, where I plan to add features like zooming, panning, and maybe even a 3D mode!
+            </p>
+            <p>
+                As always, the code is open-source and available on my <a href="https://github.com/m0zzaR/ThreeBodyProblem" target="_blank">GitHub repository</a>. Feel free to explore, contribute, or use it as inspiration for your own projects.
+            </p>
+        </div>
+    </section>
+</main>
+</body>
+</html>

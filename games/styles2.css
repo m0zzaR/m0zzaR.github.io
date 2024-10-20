@@ -1,0 +1,244 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1A1A1D;
+    color: #C5C6C7;
+}
+
+/* Navigation Bar */
+nav {
+    width: 100%;
+    background-color: #0B0C10;
+    padding: 10px 0;
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #66FCF1;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #C5C6C7;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #66FCF1;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#controls {
+    background-color: #0B0C10;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+#simulation-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#simulation-form h2 {
+    color: #66FCF1;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #C5C6C7;
+}
+
+.form-group input[type="number"],
+.form-group input[type="text"] {
+    padding: 10px;
+    background-color: #1F2833;
+    border: 1px solid #45A29E;
+    border-radius: 4px;
+    color: #C5C6C7;
+}
+
+.form-group input::placeholder {
+    color: #C5C6C7;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button[type="submit"],
+button[type="button"] {
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #66FCF1;
+    color: #0B0C10;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    width: 48%;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #45A29E;
+}
+
+button[disabled] {
+    background-color: #C5C6C7;
+    cursor: not-allowed;
+}
+
+/* Bodies Container */
+#bodies-container {
+    margin-top: 20px;
+}
+
+.body-input {
+    background-color: #1F2833;
+    border: 1px solid #45A29E;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.body-input.selected {
+    border-color: #66FCF1;
+}
+
+.body-input h3 {
+    margin-bottom: 15px;
+    color: #66FCF1;
+}
+
+.body-input .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.body-input .input-group label {
+    margin-bottom: 5px;
+    font-weight: normal;
+    color: #C5C6C7;
+}
+
+.body-input .input-group .dimension-input {
+    padding: 8px;
+    background-color: #0B0C10;
+    border: 1px solid #45A29E;
+    border-radius: 4px;
+    color: #C5C6C7;
+    margin-bottom: 10px;
+}
+
+.body-input .input-group .dimension-input::placeholder {
+    color: #C5C6C7;
+}
+
+/* Canvas */
+#simulation-canvas {
+    background-color: #000000;
+    border: 2px solid #45A29E;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    button[type="submit"],
+    button[type="button"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

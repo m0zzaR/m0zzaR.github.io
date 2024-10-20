@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>N-Body Simulation</title>
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <!-- Link to Font Awesome for icons (if needed) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">N-Body Simulation</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="https://github.com/m0zzaR/ThreeBodyProblem" target="_blank">Github Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div id="controls">
+            <form id="simulation-form">
+                <h2>Simulation Settings</h2>
+
+                <div class="form-group">
+                    <label for="numBodies">Number of Bodies:</label>
+                    <input type="number" id="numBodies" name="numBodies" min="1" value="2" required>
+                </div>
+
+                <!-- Checkboxes for collision options -->
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="edgeCollision" name="edgeCollision">
+                        Enable Edge Collisions
+                    </label>
+                    <label>
+                        <input type="checkbox" id="bodyCollision" name="bodyCollision">
+                        Enable Body Collisions
+                    </label>
+                </div>
+                <p>(You can select the body 1 and then the simulation box to more easily change positions)</p>
+
+
+                <div id="bodies-container">
+                    <!-- Body input fields will be dynamically added here -->
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" id="start-button">Start Simulation</button>
+                    <button type="button" id="stop-button" disabled>Stop Simulation</button>
+                </div>
+            </form>
+        </div>
+        <canvas id="simulation-canvas"></canvas>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
