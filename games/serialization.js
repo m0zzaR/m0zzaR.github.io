@@ -121,13 +121,6 @@ function deserializeConfiguration(configString) {
         // Select the first body by default
         selectBody(0);
 
-        // If randomizePositions is checked, re-randomize positions
-        if (randomizePositions) {
-            randomizeAllPositions();
-        } else {
-            drawInitialBodies();
-        }
-
     } catch (error) {
         console.error('Deserialization error:', error);
         alert('Invalid configuration string.');
