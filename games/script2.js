@@ -8,10 +8,15 @@ const ctx = canvas.getContext('2d');
 // New DOM elements for checkboxes
 const edgeCollisionCheckbox = document.getElementById('edgeCollision');
 const bodyCollisionCheckbox = document.getElementById('bodyCollision');
+const randomizePositionsCheckbox = document.getElementById('randomizePositions');
+const showTrailsCheckbox = document.getElementById('showTrails');
 
 // New DOM elements for buttons
 const startButton = document.getElementById('start-button');
 const stopButton = document.getElementById('stop-button');
+const saveButton = document.getElementById('save-button');
+const loadButton = document.getElementById('load-button');
+const configurationStringInput = document.getElementById('configurationString');
 
 // Constants
 const G = 1; // Gravitational constant (normalized)
@@ -25,6 +30,7 @@ let animationId;
 let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FF33A6', '#33FFF6'];
 let enableEdgeCollision = false;
 let enableBodyCollision = false;
+let showTrails = true; // Default to showing trails
 let selectedBodyIndex = null;
 
 // Define simulation boundaries (initialized later)
@@ -63,6 +69,23 @@ numBodiesInput.addEventListener('change', () => {
 });
 simulationForm.addEventListener('submit', startSimulation);
 stopButton.addEventListener('click', stopSimulation);
+saveButton.addEventListener('click', saveConfiguration);
+loadButton.addEventListener('click', loadConfiguration);
+
+// Event listener for randomize positions checkbox
+randomizePositionsCheckbox.addEventListener('change', () => {
+    if (randomizePositionsCheckbox.checked) {
+        randomizeAllPositions();
+    }
+});
+
+// Event listener for show trails checkbox
+showTrailsCheckbox.addEventListener('change', () => {
+    showTrails = showTrailsCheckbox.checked;
+    if (!animationId) {
+        drawInitialBodies();
+    }
+});
 
 // Generate initial body inputs
 generateBodyInputs();
@@ -141,7 +164,11 @@ function generateBodyInputs() {
         }
     }
 
-    drawInitialBodies();
+    if (randomizePositionsCheckbox.checked) {
+        randomizeAllPositions();
+    } else {
+        drawInitialBodies();
+    }
 }
 
 // Modify generateDimensionInputs to accept color
@@ -191,6 +218,31 @@ canvas.addEventListener('click', (event) => {
     drawInitialBodies();
 });
 
+// Function to randomize all positions
+function randomizeAllPositions() {
+    const positionsSet = new Set();
+
+    initialBodies.forEach((body, index) => {
+        let posX, posY, key;
+        do {
+            posX = (Math.random() * (simulationBounds.maxX - simulationBounds.minX - 2 * body.radius)) + simulationBounds.minX + body.radius;
+            posY = (Math.random() * (simulationBounds.maxY - simulationBounds.minY - 2 * body.radius)) + simulationBounds.minY + body.radius;
+            key = `${posX.toFixed(2)},${posY.toFixed(2)}`;
+        } while (positionsSet.has(key));
+        positionsSet.add(key);
+
+        body.position[0] = posX;
+        body.position[1] = posY;
+
+        // Update position inputs
+        const posInputs = document.querySelectorAll(`input[name^="position${index}"]`);
+        posInputs[0].value = posX.toFixed(2);
+        posInputs[1].value = posY.toFixed(2);
+    });
+
+    drawInitialBodies();
+}
+
 // Function to draw initial bodies
 function drawInitialBodies() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -222,6 +274,7 @@ function startSimulation(event) {
     // Get collision options
     enableEdgeCollision = edgeCollisionCheckbox.checked;
     enableBodyCollision = bodyCollisionCheckbox.checked;
+    showTrails = showTrailsCheckbox.checked;
 
     // Collect data for each body
     for (let i = 0; i < numBodies; i++) {
@@ -259,7 +312,7 @@ function startSimulation(event) {
     }
 
     // Disable form inputs and start button
-    simulationForm.querySelectorAll('input, button').forEach((elem) => {
+    simulationForm.querySelectorAll('input, button, textarea').forEach((elem) => {
         elem.disabled = true;
     });
     stopButton.disabled = false;
@@ -279,7 +332,7 @@ function stopSimulation() {
     }
 
     // Re-enable form inputs and start button
-    simulationForm.querySelectorAll('input, button').forEach((elem) => {
+    simulationForm.querySelectorAll('input, button, textarea').forEach((elem) => {
         elem.disabled = false;
     });
     stopButton.disabled = true;
@@ -377,10 +430,14 @@ function updateBodies() {
                 }
             }
         }
-        // Store position for trail
-        body.trail.push([...body.position]);
-        if (body.trail.length > 500) {
-            body.trail.shift();
+        // Store position for trail if trails are enabled
+        if (showTrails) {
+            body.trail.push([...body.position]);
+            if (body.trail.length > 500) {
+                body.trail.shift();
+            }
+        } else {
+            body.trail = [];
         }
     }
 }
@@ -442,8 +499,8 @@ function drawBodies() {
     const offsetY = canvas.height / 2;
 
     for (const body of bodies) {
-        // Draw trail
-        if (body.trail.length > 1) {
+        // Draw trail if enabled
+        if (showTrails && body.trail.length > 1) {
             ctx.beginPath();
             for (let i = 0; i < body.trail.length; i++) {
                 const pos = body.trail[i];
@@ -475,4 +532,25 @@ function animate() {
     updateBodies();
     drawBodies();
     animationId = requestAnimationFrame(animate);
+}
+
+// Function to save the current configuration
+function saveConfiguration() {
+    const config = serializeConfiguration();
+    configurationStringInput.value = config;
+}
+
+// Function to load a configuration
+function loadConfiguration() {
+    const configString = configurationStringInput.value.trim();
+    if (configString) {
+        try {
+            deserializeConfiguration(configString);
+            drawInitialBodies();
+        } catch (error) {
+            alert('Invalid configuration string.');
+        }
+    } else {
+        alert('Please enter a configuration string.');
+    }
 }
