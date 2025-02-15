@@ -98,6 +98,21 @@ p {
     margin-bottom: 20px;
 }
 
+/* Research Links */
+.research-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.research-link:hover {
+    color: darkblue
+}
+
+
 /* Coursework Links */
 .course-link {
     font-size: 1.2rem;
