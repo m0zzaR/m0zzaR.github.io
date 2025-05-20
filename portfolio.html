@@ -8,38 +8,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    
 <main>
-
-
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="blog.html">Engineering Blog</a></li>
-            <li><a href="./docs/resume.pdf" target="_blank">Resume</a></li>
+            <li><a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
         </ul>
     </nav>
 
-
-    
     <h1>Mechanical Design Portfolio</h1>
 
     <section class="project-index">
-    <h4>Skip to:</h4>
-    <ul>
-        <li><a href="#project1">Spray Can Handle & Trigger</a></li>
-        <li><a href="#project2">Composite Layup and Tensile Testing</a></li>
-        <li><a href="#project3">Hole Saw Arbor</a></li>
-        <li><a href="#project4">Ocean Drone Sail Rod</a></li>
-    </ul>
-</section>
-
+        <h4>Skip to:</h4>
+        <ul>
+            <li><a href="#project1">Spray Can Handle & Trigger</a></li>
+            <li><a href="#project2">Composite Layup and Tensile Testing</a></li>
+            <li><a href="#project3">Hole Saw Arbor</a></li>
+            <li><a href="#project4">Ocean Drone Sail Rod</a></li>
+        </ul>
+    </section>
 
     <!-- Project 1 -->
-    <div id="project1" class="project">
-        <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+    <section id="project1" class="project">
+        <div class="project-images">
             <figure>
                 <img src="docs/portfolio/E29/cad.png" alt="Spray Can Handle & Trigger CAD">
                 <figcaption>CAD rendering of the spray can handle assembly.</figcaption>
@@ -63,17 +56,17 @@
                 <li><strong>Washers & Nuts:</strong> Aluminum, lathed and milled to meet specific tolerance requirements</li>
             </ul>
             <p>
-                The L-shaped lever mechanism inside the handle translates a squeezing motion into vertical force on the spray can nozzle. Key tolerances were maintained using manual lathes and precision 3D printers. The design prioritizes ease of use, reusability, and manufacturability. 
+                The L-shaped lever mechanism inside the handle translates a squeezing motion into vertical force on the spray can nozzle. Key tolerances were maintained using manual lathes and precision 3D printers. The design prioritizes ease of use, reusability, and manufacturability.
             </p>
             <p>
                 Future improvements include switching to injection molding for cost-effective mass production and redesigning the handle's weight distribution to be more comfortable. This project incorporated CAD modeling, material testing, tolerance analysis, and prototyping, and was guided by real-world constraints in design for manufacturing.
             </p>
         </div>
-    </div>
+    </section>
 
     <!-- Project 2 -->
-    <div id="project2" class="project" style="flex-direction: row-reverse;">
-        <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+    <section id="project2" class="project">
+        <div class="project-images">
             <figure>
                 <img src="docs/portfolio/E127/CNC.jpg" alt="Composite Mold CNC">
                 <figcaption>CNC-machined aluminum mold for casting dogbones.</figcaption>
@@ -104,42 +97,41 @@
                 The study found that chopped carbon fiber improved ultimate tensile strength and toughness relative to neat epoxy, while colloidal silica was less effective and presented fabrication challenges. Results highlighted the real-world impact of filler dispersion and processing constraints on composite performance.
             </p>
         </div>
-    </div>
+    </section>
 
-<!-- Project 3 -->
-<div id="project3" class="project">
-    <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
-        <figure>
-            <img src="docs/portfolio/MachineShop/Hole Arbor_page-0001.jpg" alt="Hole Saw Arbor Design">
-            <figcaption>Technical drawing for a custom hole saw arbor.</figcaption>
-        </figure>
-        <figure>
-            <img src="docs/portfolio/MachineShop/IMG_3973.jpg" alt="Final Fabricated Component">
-            <figcaption>Fabricated steel hole saw arbor turned on a manual lathe.</figcaption>
-        </figure>
-    </div>
-    <div class="project-details">
-        <h2>Hole Saw Arbor</h2>
-        <p><strong>Role:</strong> Work Study Assistant Machinist at UC Berkeley Machine Shop</p>
-        <p>
-            Designed and machined a custom hole saw arbor to adapt a different threaded tip size while maintaining compatibility with existing tooling. The goal was to produce a version that could accept a hole saw with matching thread dimensions on one end, and fit into the mill’s collet on the other.
-        </p>
-        <p>
-            After finalizing the dimensions in Fusion 360 based on a reference arbor, I printed a technical drawing and sourced appropriate steel stock. The raw stock was cut to length, then turned and faced using a carbide cutting tool on a manual lathe to achieve the required fit and surface finish.
-        </p>
-        <ul>
-            <li>Modeled arbor geometry in Fusion 360</li>
-            <li>Printed a dimensioned technical drawing for shop use</li>
-            <li>Cut steel stock to length and machined features entirely on the lathe</li>
-            <li>Threaded tip modified to accept alternate hole saw while preserving thread spec</li>
-        </ul>
-    </div>
-</div>
-
+    <!-- Project 3 -->
+    <section id="project3" class="project">
+        <div class="project-images">
+            <figure>
+                <img src="docs/portfolio/MachineShop/Hole Arbor_page-0001.jpg" alt="Hole Saw Arbor Design">
+                <figcaption>Technical drawing for a custom hole saw arbor.</figcaption>
+            </figure>
+            <figure>
+                <img src="docs/portfolio/MachineShop/IMG_3973.jpg" alt="Final Fabricated Component">
+                <figcaption>Fabricated steel hole saw arbor turned on a manual lathe.</figcaption>
+            </figure>
+        </div>
+        <div class="project-details">
+            <h2>Hole Saw Arbor</h2>
+            <p><strong>Role:</strong> Work Study Assistant Machinist at UC Berkeley Machine Shop</p>
+            <p>
+                Designed and machined a custom hole saw arbor to adapt a different threaded tip size while maintaining compatibility with existing tooling. The goal was to produce a version that could accept a hole saw with matching thread dimensions on one end, and fit into the mill’s collet on the other.
+            </p>
+            <p>
+                After finalizing the dimensions in Fusion 360 based on a reference arbor, I printed a technical drawing and sourced appropriate steel stock. The raw stock was cut to length, then turned and faced using a carbide cutting tool on a manual lathe to achieve the required fit and surface finish.
+            </p>
+            <ul>
+                <li>Modeled arbor geometry in Fusion 360</li>
+                <li>Printed a dimensioned technical drawing for shop use</li>
+                <li>Cut steel stock to length and machined features entirely on the lathe</li>
+                <li>Threaded tip modified to accept alternate hole saw while preserving thread spec</li>
+            </ul>
+        </div>
+    </section>
 
     <!-- Project 4 -->
-    <div id="project4" class="project" style="flex-direction: row-reverse;">
-        <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+    <section id="project4" class="project">
+        <div class="project-images">
             <figure>
                 <img src="docs/portfolio/TAFLab/Sail Shaft Mount_page-0001.jpg" alt="TAFLab Sail Rod Design">
                 <figcaption>Annotated CAD drawing of the sail rod mount for the Ocean Swarm Drone.</figcaption>
@@ -158,8 +150,7 @@
                 <li>Machined using manual mill and lathe</li>
             </ul>
         </div>
-    </div>
-
+    </section>
 </main>
 </body>
 </html>
