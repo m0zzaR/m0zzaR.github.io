@@ -277,11 +277,13 @@ pre code {
 }
 
 .project-images img {
-    width: 100%;             /* or try 90%, 600px, etc. */
-    max-width: 400px;        /* limits how big it can get */
-    height: auto;            /* maintain aspect ratio */
-    object-fit: contain;     /* optional, for clean scaling */
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+    max-height: 300px !important;
+    object-fit: contain;
 }
+
 
 
 
