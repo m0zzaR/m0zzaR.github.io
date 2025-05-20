@@ -319,3 +319,30 @@ pre code {
     margin: 0 auto;
     padding: 0 2rem;
 }
+
+.project-index ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 1rem;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.project-index li {
+    background: #f0f0f0;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.project-index a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+}
+
+.project-index a:hover {
+    color: #0077cc;
+}
