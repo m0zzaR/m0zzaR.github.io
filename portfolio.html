@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio – Gabriel Fonseca</title>
+    <meta name="description" content="Portfolio of engineering projects by Gabriel Fonseca">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="blog.html">Engineering Blog</a></li>
+            <li><a href="./docs/resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Design Portfolio</h1>
+
+    <!-- Project 1 -->
+    <div class="project">
+        <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+            <figure>
+                <img src="docs/portfolio/E29/cad.png" alt="Spray Can Handle & Trigger CAD">
+                <figcaption>CAD rendering of the spray can handle assembly.</figcaption>
+            </figure>
+            <figure>
+                <img src="docs/portfolio/E29/unnamed (1).jpg" alt="Spray Can Handle & Trigger Final Product">
+                <figcaption>Final prototype assembled on a standard spray can.</figcaption>
+            </figure>
+        </div>
+        <div class="project-details">
+            <h2>Spray Can Handle & Trigger</h2>
+            <p><strong>Course:</strong> Engineering 29 – Manufacturing and Design Communication</p>
+            <p>
+                Designed and fabricated an ergonomic spray can attachment to reduce finger fatigue and improve spray control for users—including those with arthritis. The final prototype features 11 components, each selected and manufactured for functionality, cost-efficiency, and user comfort:
+            </p>
+            <ul>
+                <li><strong>Handle:</strong> Tough 1500 resin, SLA 3D printed for strength and snap-fit flexibility</li>
+                <li><strong>Trigger:</strong> Aluminum, bandsawn and drilled for durability and reliable pivoting</li>
+                <li><strong>Tapped Rod:</strong> Aluminum, lathed and threaded to hold the trigger in place</li>
+                <li><strong>Bushings & Spacers:</strong> PLA and aluminum respectively, ensuring smooth rotation and spacing</li>
+                <li><strong>Washers & Nuts:</strong> Aluminum, lathed and milled to meet specific tolerance requirements</li>
+            </ul>
+            <p>
+                The L-shaped lever mechanism inside the handle translates a squeezing motion into vertical force on the spray can nozzle. Key tolerances were maintained using manual lathes and precision 3D printers. The design prioritizes ease of use, reusability, and manufacturability. 
+            </p>
+            <p>
+                Future improvements include switching to injection molding for cost-effective mass production and redesigning the handle's weight distribution to be more comfortable. This project incorporated CAD modeling, material testing, tolerance analysis, and prototyping, and was guided by real-world constraints in design for manufacturing.
+            </p>
+        </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project" style="flex-direction: row-reverse;">
+        <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+            <figure>
+                <img src="docs/portfolio/E127/CNC.jpg" alt="Composite Mold CNC">
+                <figcaption>CNC-machined aluminum mold for casting dogbones.</figcaption>
+            </figure>
+            <figure>
+                <img src="docs/portfolio/E127/mold.jpg" alt="Composite Mold Final">
+                <figcaption>Final aluminum mold for ASTM D638 samples.</figcaption>
+            </figure>
+            <figure>
+                <img src="docs/portfolio/E127/utm carbon.png" alt="Composite Tensile Sample Testing">
+                <figcaption>Carbon fiber-filled epoxy specimen testing in the Instron UTM.</figcaption>
+            </figure>
+        </div>
+        <div class="project-details">
+            <h2>Composite Layup and Tensile Testing</h2>
+            <p><strong>Course:</strong> Mechanical Engineering 127 – Introduction to Composite Materials</p>
+            <p>
+                Conducted a research-based project on the tensile performance of epoxy composites reinforced with chopped carbon fiber and colloidal silica fillers. Using ASTM D638 Type IV dog-bone geometry, samples were cast with a CNC-machined aluminum mold and tested to evaluate mechanical strength, stiffness, and fracture behavior.
+            </p>
+            <ul>
+                <li>Prepared, mixed, and degassed filled and unfilled epoxy resin systems under vacuum</li>
+                <li>Utilized a precision aluminum mold and followed controlled curing and post-curing protocols</li>
+                <li>Performed uniaxial tensile testing on an Instron UTM per ASTM E8 and D3039 standards</li>
+                <li>Processed experimental data and generated stress-strain curves using MATLAB</li>
+                <li>Compared experimental modulus values to theoretical models (Halpin-Tsai, Rule-of-Mixtures)</li>
+            </ul>
+            <p>
+                The study found that chopped carbon fiber improved ultimate tensile strength and toughness relative to neat epoxy, while colloidal silica was less effective and presented fabrication challenges. Results highlighted the real-world impact of filler dispersion and processing constraints on composite performance.
+            </p>
+        </div>
+    </div>
+
+<!-- Project 3 -->
+<div class="project">
+    <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+        <figure>
+            <img src="docs/portfolio/MachineShop/Hole Arbor_page-0001.jpg" alt="Hole Saw Arbor Design">
+            <figcaption>Technical drawing for a custom hole saw arbor.</figcaption>
+        </figure>
+        <figure>
+            <img src="docs/portfolio/MachineShop/IMG_3973.jpg" alt="Final Fabricated Component">
+            <figcaption>Fabricated steel hole saw arbor turned on a manual lathe.</figcaption>
+        </figure>
+    </div>
+    <div class="project-details">
+        <h2>Hole Saw Arbor – CAD and Fabrication</h2>
+        <p><strong>Role:</strong> Work Study Assistant Machinist at UC Berkeley Machine Shop</p>
+        <p>
+            Designed and machined a custom hole saw arbor to adapt a different threaded tip size while maintaining compatibility with existing tooling. The goal was to produce a version that could accept a hole saw with matching thread dimensions on one end, and fit into the mill’s collet on the other.
+        </p>
+        <p>
+            After finalizing the dimensions in Fusion 360 based on a reference arbor, I printed a technical drawing and sourced appropriate steel stock. The raw stock was cut to length, then turned and faced using a carbide cutting tool on a manual lathe to achieve the required fit and surface finish.
+        </p>
+        <ul>
+            <li>Modeled arbor geometry in Fusion 360</li>
+            <li>Printed a dimensioned technical drawing for shop use</li>
+            <li>Cut steel stock to length and machined features entirely on the lathe</li>
+            <li>Threaded tip modified to accept alternate hole saw while preserving thread spec</li>
+        </ul>
+    </div>
+</div>
+
+
+    <!-- Project 4 -->
+    <div class="project" style="flex-direction: row-reverse;">
+        <div class="project-images" style="display: flex; flex-direction: column; gap: 10px;">
+            <figure>
+                <img src="docs/portfolio/TAFLab/Sail Shaft Mount_page-0001.jpg" alt="TAFLab Sail Rod Design">
+                <figcaption>Annotated CAD drawing of the sail rod mount for the Ocean Swarm Drone.</figcaption>
+            </figure>
+        </div>
+        <div class="project-details">
+            <h2>Ocean Drone Sail Rod – CAD and Fabrication</h2>
+            <p><strong>Lab:</strong> Theoretical & Applied Fluid Dynamics Lab (TAFLab)</p>
+            <p>
+                Designed and prototyped a precision sail rod for the Ocean Swarm Drone project. 
+                Work involved tight tolerances and material selection for marine conditions.
+            </p>
+            <ul>
+                <li>Collaborated with graduate researchers in TAFLab</li>
+                <li>Designed for aerodynamic stiffness and minimal weight</li>
+                <li>Machined using manual mill and lathe</li>
+            </ul>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>
