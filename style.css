@@ -346,3 +346,17 @@ pre code {
 .project-index a:hover {
     color: #0077cc;
 }
+
+.project {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2rem;
+}
+
+/* Add this to alternate images location */
+.project:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
