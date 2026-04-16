@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10X Screener // Generational Stock Research</title>
+    <meta name="description" content="A quantitative screener for stocks with 10x potential, built on Chris Mayer's 100-Baggers framework.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stock-research.css">
+</head>
+<body class="screener-body">
+<main class="screener-main">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="blog.html">Engineering Blog</a></li>
+            <li><a href="stock-research.html">10X Screener</a></li>
+            <li><a href="./docs/resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+
+    <header class="screener-header">
+        <div class="screener-title-block">
+            <div class="screener-title">10X SCREENER<span class="screener-title-divider">//</span>MAYER GATE</div>
+            <div class="screener-tagline">Quantitative hunt for generational compounders. Filter logic from Chris Mayer's <em>100 Baggers</em> (2015).</div>
+        </div>
+        <div class="screener-stats">
+            <div class="stat"><span class="stat-label">UNIVERSE</span><span class="stat-value" id="stat-universe">—</span></div>
+            <div class="stat"><span class="stat-label">SURVIVORS</span><span class="stat-value" id="stat-survivors">—</span></div>
+            <div class="stat"><span class="stat-label">SHOWING</span><span class="stat-value" id="stat-showing">—</span></div>
+            <div class="stat"><span class="stat-label">UPDATED</span><span class="stat-value" id="stat-updated">—</span></div>
+        </div>
+    </header>
+
+    <div id="demo-banner" class="demo-banner" hidden>
+        DEMO DATA // hand-curated sample. Live Russell 3000 build activates when <code>FMP_API_KEY</code> is added as a repo secret and the weekly GitHub Action runs.
+    </div>
+
+    <section class="historical-strip">
+        <div class="historical-label">HISTORICAL WINNERS &mdash; the filter catches these archetypes:</div>
+        <div class="historical-tape">
+            <span class="tape-item"><strong>MNST</strong> <span class="tape-note">energy drinks, 2005 inflection, ~+6000%</span></span>
+            <span class="tape-sep">&bull;</span>
+            <span class="tape-item"><strong>DPZ</strong> <span class="tape-note">founder-led turnaround, 2010, ~+3800%</span></span>
+            <span class="tape-sep">&bull;</span>
+            <span class="tape-item"><strong>NVDA</strong> <span class="tape-note">small-cap compute, 2015, ~+40000%</span></span>
+            <span class="tape-sep">&bull;</span>
+            <span class="tape-item"><strong>POOL</strong> <span class="tape-note">niche distributor, 2000s, ~+5000%</span></span>
+            <span class="tape-sep">&bull;</span>
+            <span class="tape-item"><strong>TSCO</strong> <span class="tape-note">rural retail, 2005, ~+2500%</span></span>
+        </div>
+    </section>
+
+    <div class="screener-body-grid">
+        <aside class="filter-rail">
+            <div class="rail-section">
+                <div class="rail-heading">MAYER GATE</div>
+                <div class="rail-sub">All stocks passing these hard thresholds are included. Tighten below to narrow the table.</div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-label"><span>MIN ROIC</span><span class="filter-value" data-for="roic">15%</span></div>
+                <input type="range" id="filter-roic" min="15" max="40" value="15" step="1">
+            </div>
+            <div class="filter-group">
+                <div class="filter-label"><span>MIN REV CAGR (5Y)</span><span class="filter-value" data-for="revCagr">10%</span></div>
+                <input type="range" id="filter-revCagr" min="10" max="40" value="10" step="1">
+            </div>
+            <div class="filter-group">
+                <div class="filter-label"><span>MIN EPS CAGR (5Y)</span><span class="filter-value" data-for="epsCagr">15%</span></div>
+                <input type="range" id="filter-epsCagr" min="15" max="50" value="15" step="1">
+            </div>
+            <div class="filter-group">
+                <div class="filter-label"><span>MAX MARKET CAP</span><span class="filter-value" data-for="marketCap">$5.0B</span></div>
+                <input type="range" id="filter-marketCap" min="200" max="5000" value="5000" step="100">
+            </div>
+            <div class="filter-group">
+                <div class="filter-label"><span>MAX DEBT/EQUITY</span><span class="filter-value" data-for="debtEquity">0.60</span></div>
+                <input type="range" id="filter-debtEquity" min="0" max="60" value="60" step="1">
+            </div>
+            <div class="filter-group">
+                <div class="filter-label"><span>MIN INSIDER OWNERSHIP</span><span class="filter-value" data-for="insider">5%</span></div>
+                <input type="range" id="filter-insider" min="5" max="25" value="5" step="1">
+            </div>
+            <div class="filter-group">
+                <div class="filter-label"><span>MIN 10X SCORE</span><span class="filter-value" data-for="score">0</span></div>
+                <input type="range" id="filter-score" min="0" max="100" value="0" step="1">
+            </div>
+
+            <div class="rail-section rail-section-secondary">
+                <div class="rail-heading">SECTOR</div>
+            </div>
+            <div class="filter-group">
+                <select id="filter-sector" class="sector-select">
+                    <option value="">ALL SECTORS</option>
+                </select>
+            </div>
+
+            <button id="reset-filters" class="reset-btn">RESET FILTERS</button>
+
+            <div class="rail-section rail-section-secondary">
+                <div class="rail-heading">METHODOLOGY</div>
+                <div class="rail-body">
+                    <p><strong>Why these filters?</strong> Across every U.S. stock that returned 100x from 1962&ndash;2014, Mayer's study found a consistent signature: small size, ROIC &gt; 15%, sustained 15%+ EPS growth, low debt, and aligned insiders.</p>
+                    <p><strong>10x Score</strong> is a weighted composite &mdash; growth 30%, quality 25%, reinvestment runway 20%, multiple headroom 10%, size 10%, insider alignment 5%.</p>
+                    <p>Only ~0.7% of Russell 3000 stocks 10x in a decade. The filter is strict on purpose.</p>
+                </div>
+            </div>
+        </aside>
+
+        <section class="results-panel">
+            <div class="results-toolbar">
+                <input type="text" id="search-ticker" placeholder="SEARCH TICKER OR NAME..." class="search-input">
+                <div class="sort-control">
+                    <label>SORT</label>
+                    <select id="sort-select">
+                        <option value="score">10X SCORE</option>
+                        <option value="growth">GROWTH</option>
+                        <option value="quality">QUALITY</option>
+                        <option value="roic">ROIC</option>
+                        <option value="marketCap">MARKET CAP</option>
+                        <option value="insider">INSIDER %</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table class="screener-table">
+                    <thead>
+                        <tr>
+                            <th class="col-ticker">TICKER</th>
+                            <th class="col-name">NAME</th>
+                            <th class="col-sector">SECTOR</th>
+                            <th class="col-num">MKT CAP</th>
+                            <th class="col-num">ROIC</th>
+                            <th class="col-num">REV CAGR</th>
+                            <th class="col-num">EPS CAGR</th>
+                            <th class="col-num">D/E</th>
+                            <th class="col-num">INSIDER</th>
+                            <th class="col-num">P/E</th>
+                            <th class="col-num col-score">10X</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body"></tbody>
+                </table>
+                <div id="empty-state" class="empty-state" hidden>
+                    No stocks pass these filters. Loosen a threshold on the left rail.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="screener-footer">
+        <p>Built on Chris Mayer's <em>100 Baggers: Stocks That Return 100-to-1 and How to Find Them</em> (2015). Data from Financial Modeling Prep, refreshed weekly via GitHub Actions. Not investment advice.</p>
+    </footer>
+</main>
+<script src="stock-research.js"></script>
+</body>
+</html>
