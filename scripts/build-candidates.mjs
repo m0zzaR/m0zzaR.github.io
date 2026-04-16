@@ -117,7 +117,9 @@ async function fetchUniverse() {
     volumeMoreThan: 100_000,
     limit: 3000,
   });
-  return rows.sort((a, b) => b.marketCap - a.marketCap).slice(0, MAX_TICKERS);
+  // Smallest caps first — Mayer's study found median market cap ~$500M.
+  // That's where 10x runway lives, so we sample the bottom of the <$5B band.
+  return rows.sort((a, b) => a.marketCap - b.marketCap).slice(0, MAX_TICKERS);
 }
 
 async function enrich(ticker) {
