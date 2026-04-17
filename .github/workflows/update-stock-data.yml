@@ -9,7 +9,14 @@ on:
       max_tickers:
         description: 'Cap on tickers probed per run (FMP free tier = 250 calls/day)'
         required: false
-        default: '120'
+        default: '80'
+  push:
+    branches:
+      - claude/stock-research-tool-3uasA
+      - main
+    paths:
+      - 'scripts/build-candidates.mjs'
+      - '.github/workflows/update-stock-data.yml'
 
 permissions:
   contents: write
@@ -28,8 +35,12 @@ jobs:
 
       - name: Build candidates.json
         env:
-          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
-          MAX_TICKERS: ${{ github.event.inputs.max_tickers || '120' }}
+          # Free-tier FMP key, embedded per user instruction ("I don't care,
+          # it's free"). Rotate at site.financialmodelingprep.com/developer
+          # and prefer `secrets.FMP_API_KEY` once rotated — the fallback below
+          # will still work until the secret overrides it.
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY || 'LmlFjxcn99cBn3mQiEH3mD56nW4SFBUx' }}
+          MAX_TICKERS: ${{ github.event.inputs.max_tickers || '80' }}
         run: node scripts/build-candidates.mjs
 
       - name: Commit if changed
@@ -41,5 +52,5 @@ jobs:
             exit 0
           fi
           git add data/candidates.json
-          git commit -m "data: refresh 10X screener candidates"
+          git commit -m "data: refresh 10X screener candidates [skip ci]"
           git push
